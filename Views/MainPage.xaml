@@ -1,9 +1,11 @@
-﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MysticWalley.Views.MainPage"
              Title="Мистическая Долина"
              BackgroundImageSource="background.png">
 
+    <!-- Список героев -->
     <CollectionView x:Name="CharactersView"
                     SelectionMode="Single"
                     SelectionChanged="OnCharacterSelected"
@@ -11,20 +13,24 @@
 
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <Frame Padding="10" Margin="5"
-                       CornerRadius="12"
-                       BorderColor="Purple"
-                       BackgroundColor="#AAFFFFFF">
-                    <!-- полупрозрачный фон -->
-
-                    <HorizontalStackLayout Spacing="15">
-                        <Image Source="{Binding Icon}" WidthRequest="64" HeightRequest="64"/>
+                <VerticalStackLayout Spacing="5" Padding="10" HorizontalOptions="Center">
+                    <!-- Иконка -->
+                    <Image Source="{Binding Icon}" 
+                           WidthRequest="96" HeightRequest="96"
+                           HorizontalOptions="Center"/>
+                    <!-- Имя героя, белый с подложкой -->
+                    <Frame Padding="4"
+                           BackgroundColor="#80000000"
+                           CornerRadius="6"
+                           HasShadow="False"
+                           HorizontalOptions="Center">
                         <Label Text="{Binding Name}" 
-                               VerticalOptions="Center"
-                               FontSize="22"
-                               TextColor="Black"/>
-                    </HorizontalStackLayout>
-                </Frame>
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="White"
+                               HorizontalOptions="Center"/>
+                    </Frame>
+                </VerticalStackLayout>
             </DataTemplate>
         </CollectionView.ItemTemplate>
 

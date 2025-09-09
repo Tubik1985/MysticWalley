@@ -8,7 +8,6 @@ public partial class MainPage : ContentPage
     public MainPage()
     {
         InitializeComponent();
-        // Привязываем к списку персонажей
         CharactersView.ItemsSource = CharacterService.GetCharacters();
     }
 
@@ -18,8 +17,10 @@ public partial class MainPage : ContentPage
         {
             CharactersView.SelectedItem = null;
 
-            // было: Alert, теперь переход
+            // Лёгкий fade переход
+            await this.FadeTo(0.8, 150, Easing.CubicInOut);
             await Navigation.PushAsync(new PredictionPage(selected));
+            await this.FadeTo(1, 150, Easing.CubicInOut);
         }
     }
 }
