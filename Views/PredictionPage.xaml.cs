@@ -4,27 +4,30 @@ namespace MysticWalley.Views;
 
 public partial class PredictionPage : ContentPage
 {
-    private readonly Character _character; // выбранный герой
+    private readonly Character _character;
 
-    // Конструктор страницы — принимает выбранного героя
     public PredictionPage(Character character)
     {
         InitializeComponent();
         _character = character;
-        CharacterLabel.Text = $"Вы зашли к: {_character.Name}";
+
+        // Заполняем из XAML поля
+        CharacterLabel.Text = _character.Name;
+        CharacterIcon.Source = _character.Portrait;
+        CharacterDescription.Text = _character.Description;
     }
 
-    // Обработчик нажатия кнопки "Предсказать"
     private void OnPredictClicked(object sender, EventArgs e)
     {
         string[] phrases =
         {
-            "Сегодня хороший день.",
-            "Будьте внимательны к мелочам.",
-            "Избегайте пустых решений на эмоциях."
+            "Сегодня хороший день для начала новых дел.",
+            "В мелочах кроется большая удача.",
+            "Не давайте пустых обещаний.",
+            "Лучше держать эмоции под контролем."
         };
 
         var rnd = new Random();
-        ResultLabel.Text = $"{_character.Name} говорит: \"{phrases[rnd.Next(phrases.Length)]}\"";
+        ResultLabel.Text = $"{_character.Name} предсказывает: \"{phrases[rnd.Next(phrases.Length)]}\"";
     }
 }

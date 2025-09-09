@@ -1,23 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MysticWalley.Views.PredictionPage"
-             Title="Предсказание"
-             BackgroundColor="#FAF3FF">
-    <!-- светло-фиолетовый фон -->
+             Title="Карточка героя"
+             BackgroundColor="#FFF9F9">
 
     <VerticalStackLayout Padding="20" Spacing="20">
-        <Label x:Name="CharacterLabel"
-               FontSize="24"
-               FontAttributes="Bold"
-               HorizontalOptions="Center"
-               TextColor="DarkSlateBlue"/>
 
+        <Frame CornerRadius="16" Padding="15" BackgroundColor="#FFFFFF" HasShadow="True">
+            <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
+
+                <!-- Крупный портрет героя -->
+                <Image x:Name="CharacterIcon"
+                       WidthRequest="160"
+                       HeightRequest="160"
+                       HorizontalOptions="Center"/>
+
+                <!-- Имя героя -->
+                <Label x:Name="CharacterLabel"
+                       FontSize="26"
+                       FontAttributes="Bold"
+                       TextColor="DarkSlateBlue"
+                       HorizontalOptions="Center"/>
+
+                <!-- Описание героя -->
+                <Label x:Name="CharacterDescription"
+                       FontSize="16"
+                       TextColor="Gray"
+                       HorizontalOptions="Center"
+                       LineBreakMode="WordWrap"/>
+            </VerticalStackLayout>
+        </Frame>
+
+        <!-- Кнопка -->
         <Button Text="🔮 Получить предсказание"
                 Clicked="OnPredictClicked"
                 BackgroundColor="MediumPurple"
                 TextColor="White"
-                CornerRadius="15"/>
+                CornerRadius="15"
+                HorizontalOptions="Center"/>
 
+        <!-- Результат -->
         <Label x:Name="ResultLabel"
                FontSize="20"
                HorizontalOptions="Center"
