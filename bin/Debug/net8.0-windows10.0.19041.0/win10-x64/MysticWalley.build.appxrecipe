@@ -199,6 +199,12 @@
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-400.png">
       <PackagePath>appiconWideTile.scale-400.png</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\astrologer.scale-100.png">
+      <PackagePath>astrologer.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\cardman.scale-100.png">
+      <PackagePath>cardman.scale-100.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-100.png">
       <PackagePath>dotnet_bot.scale-100.png</PackagePath>
     </AppxPackagedFile>
@@ -213,6 +219,12 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-400.png">
       <PackagePath>dotnet_bot.scale-400.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\fortune.scale-100.png">
+      <PackagePath>fortune.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\valley_bg.scale-100.png">
+      <PackagePath>valley_bg.scale-100.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\MysticWalley.deps.json">
       <PackagePath>MysticWalley.deps.json</PackagePath>
