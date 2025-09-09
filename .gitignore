@@ -1,0 +1,41 @@
+# Системные файлы
+Thumbs.db
+*.DS_Store
+
+# Логи
+*.log
+
+# Папки сборки
+bin/
+obj/
+Debug/
+Release/
+[Bb]uild/
+
+# Кэш и IDE
+.vs/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Пакеты NuGet (их восстанавливают автоматически)
+*.nupkg
+*.snupkg
+packages/
+*.nuspec
+
+# Rider / JetBrains
+*.iml
+*.ipr
+*.iws
+
+# Output от тестов
+TestResult*/
+*.VisualState.xml
+*.TestResult.xml
+
+# Конфигурации (если секреты)
+appsettings.Development.json
+appsettings.Local.json
