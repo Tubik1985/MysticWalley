@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MysticWalley")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+f4d65e83d843a6da51e99fa89c2c99abfd619a00")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+d59b982dc0c746e49da54acfc3b18d4c2fbfbd53")]
 [assembly: System.Reflection.AssemblyProductAttribute("MysticWalley")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MysticWalley")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

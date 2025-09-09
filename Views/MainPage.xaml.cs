@@ -16,11 +16,10 @@ public partial class MainPage : ContentPage
     {
         if (e.CurrentSelection.FirstOrDefault() is Character selected)
         {
-            // Снимаем выделение, иначе элемент не «кликабелен» повторно
             CharactersView.SelectedItem = null;
 
-            // Временно просто алерт с выбранным именем
-            await DisplayAlert("Выбор героя", $"Вы выбрали: {selected.Name}", "OK");
+            // было: Alert, теперь переход
+            await Navigation.PushAsync(new PredictionPage(selected));
         }
     }
 }
