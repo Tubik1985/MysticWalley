@@ -1,27 +1,27 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MysticWalley.Views.PredictionPage"
-             Title="Предсказание">
+             Title="Предсказание"
+             BackgroundColor="#FAF3FF">
+    <!-- светло-фиолетовый фон -->
 
-    <VerticalStackLayout Padding="20" Spacing="15">
-
-        <!-- Имя персонажа -->
+    <VerticalStackLayout Padding="20" Spacing="20">
         <Label x:Name="CharacterLabel"
-               FontSize="22"
+               FontSize="24"
+               FontAttributes="Bold"
                HorizontalOptions="Center"
-               TextColor="Black"/>
+               TextColor="DarkSlateBlue"/>
 
-        <!-- Кнопка -->
-        <Button Text="Предсказать судьбу"
-                Clicked="OnPredictClicked"/>
+        <Button Text="🔮 Получить предсказание"
+                Clicked="OnPredictClicked"
+                BackgroundColor="MediumPurple"
+                TextColor="White"
+                CornerRadius="15"/>
 
-        <!-- Результат -->
         <Label x:Name="ResultLabel"
-               FontSize="18"
+               FontSize="20"
                HorizontalOptions="Center"
                TextColor="Purple"
                LineBreakMode="WordWrap"/>
-
     </VerticalStackLayout>
 </ContentPage>
