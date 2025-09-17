@@ -17,4 +17,17 @@ public partial class HistoryPage : ContentPage
         base.OnAppearing();
         HistoryView.ItemsSource = await _historyService.GetHistoryAsync();
     }
+    private async void OnClearHistoryClicked(object sender, EventArgs e)
+    {
+        var confirm = await DisplayAlert(
+            "Подтверждение",
+            "Точно очистить всю историю предсказаний?",
+            "Да", "Отмена");
+
+        if (confirm)
+        {
+            await _historyService.ClearHistoryAsync();
+            HistoryView.ItemsSource = await _historyService.GetHistoryAsync();
+        }
+    }
 }

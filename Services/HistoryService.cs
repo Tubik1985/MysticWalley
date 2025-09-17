@@ -31,4 +31,9 @@ public class HistoryService
                   .OrderByDescending(m => m.Timestamp)
                   .ToListAsync();
     }
+    public Task ClearHistoryAsync()
+    {
+        return _db.DeleteAllAsync<ChatMessage>();
+    }
+
 }
