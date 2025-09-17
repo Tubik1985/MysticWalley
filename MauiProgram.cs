@@ -25,7 +25,7 @@ public static class MauiProgram
         // регистрация страниц
         builder.Services.AddSingleton<MainPage>();
         builder.Services.AddTransient<PredictionPage>();
-
+        builder.Services.AddTransient<HistoryPage>();
 #if DEBUG
         builder.Logging.AddDebug();
 #endif

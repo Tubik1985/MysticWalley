@@ -3,7 +3,13 @@
        xmlns:views="clr-namespace:MysticWalley.Views"
        x:Class="MysticWalley.AppShell">
 
-    <ShellContent Title="Главная"
-                  Route="MainPage"
-                  ContentTemplate="{DataTemplate views:MainPage}" />
+    <TabBar>
+        <ShellContent Title="Главная"
+                      ContentTemplate="{DataTemplate views:MainPage}"
+                      Route="MainPage" />
+
+        <ShellContent Title="История"
+                      ContentTemplate="{DataTemplate views:HistoryPage}"
+                      Route="HistoryPage" />
+    </TabBar>
 </Shell>

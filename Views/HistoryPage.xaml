@@ -2,22 +2,26 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MysticWalley.Views.HistoryPage"
-             Title="Хроники">
+             Title="История предсказаний">
 
-    <CollectionView x:Name="HistoryList" Margin="10">
+    <CollectionView x:Name="HistoryView" Margin="12">
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <Frame BackgroundColor="#222" Padding="10" CornerRadius="8" Margin="0,5">
+                <Frame Margin="4" Padding="8"
+                       BorderColor="Purple"
+                       CornerRadius="10"
+                       HasShadow="True">
                     <VerticalStackLayout>
-                        <Label Text="{Binding Character}" 
-                               TextColor="Orange"
-                               FontAttributes="Bold"/>
+                        <Label Text="{Binding Character}"
+                               FontAttributes="Bold"
+                               FontSize="18"
+                               TextColor="Purple"/>
                         <Label Text="{Binding Response}" 
-                               TextColor="White" 
-                               FontSize="14"/>
-                        <Label Text="{Binding Timestamp}"
-                               TextColor="#aaa" 
-                               FontSize="12"/>
+                               FontSize="14"
+                               TextColor="Black"/>
+                        <Label Text="{Binding Timestamp}" 
+                               FontSize="12"
+                               TextColor="Gray"/>
                     </VerticalStackLayout>
                 </Frame>
             </DataTemplate>

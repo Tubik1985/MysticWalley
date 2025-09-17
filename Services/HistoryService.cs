@@ -1,19 +1,34 @@
 ﻿using MysticWalley.Models;
+using SQLite;
 
 namespace MysticWalley.Services;
 
 public class HistoryService
 {
-    private readonly List<ChatMessage> _messages = new();
+    private readonly SQLiteAsyncConnection _db;
 
-    public Task SaveMessageAsync(ChatMessage msg)
+    public HistoryService()
     {
-        _messages.Add(msg);
-        return Task.CompletedTask;
+        var dbPath = Path.Combine(FileSystem.AppDataDirectory, "history.db3");
+        _db = new SQLiteAsyncConnection(dbPath);
+        _db.CreateTableAsync<ChatMessage>().Wait(); // авто‑создание таблицы
     }
 
+    /// <summary>
+    /// Сохраняет сообщение
+    /// </summary>
+    public Task SaveMessageAsync(ChatMessage msg)
+    {
+        return _db.InsertAsync(msg);
+    }
+
+    /// <summary>
+    /// Получает всю историю (сортируем новые записи сверху)
+    /// </summary>
     public Task<List<ChatMessage>> GetHistoryAsync()
     {
-        return Task.FromResult(_messages.ToList());
+        return _db.Table<ChatMessage>()
+                  .OrderByDescending(m => m.Timestamp)
+                  .ToListAsync();
     }
 }
