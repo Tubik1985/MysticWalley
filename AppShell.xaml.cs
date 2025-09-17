@@ -1,10 +1,12 @@
-﻿namespace MysticWalley
+﻿namespace MysticWalley;
+
+public partial class AppShell : Shell
 {
-    public partial class AppShell : Shell
+    public AppShell()
     {
-        public AppShell()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+
+        // регистрация маршрута для страницы предсказаний
+        Routing.RegisterRoute(nameof(Views.PredictionPage), typeof(Views.PredictionPage));
     }
 }

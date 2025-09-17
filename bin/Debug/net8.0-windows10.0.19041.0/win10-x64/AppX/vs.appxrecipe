@@ -30,25 +30,25 @@
     <AppXManifest Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2025-09-09T10:58:45.386</Modified>
+      <Modified>2025-09-17T10:37:00.431</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2025-09-09T10:58:45.086</Modified>
+      <Modified>2025-09-17T10:37:00.295</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\MysticWalley.runtimeconfig.json">
       <PackagePath>MysticWalley.runtimeconfig.json</PackagePath>
-      <Modified>2025-09-09T10:58:44.744</Modified>
+      <Modified>2025-09-17T10:37:00.209</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\MysticWalley.dll">
       <PackagePath>MysticWalley.dll</PackagePath>
-      <Modified>2025-09-09T10:58:43.213</Modified>
+      <Modified>2025-09-17T10:36:59.889</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>MysticWalley.exe</PackagePath>
-      <Modified>2025-09-09T10:58:43.235</Modified>
+      <Modified>2025-09-17T10:36:59.895</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\Resources\Raw\AboutAssets.txt">
       <PackagePath>AboutAssets.txt</PackagePath>
@@ -56,23 +56,23 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-100.png">
       <PackagePath>splashSplashScreen.scale-100.png</PackagePath>
-      <Modified>2025-09-09T10:58:40.770</Modified>
+      <Modified>2025-09-17T10:36:57.978</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-125.png">
       <PackagePath>splashSplashScreen.scale-125.png</PackagePath>
-      <Modified>2025-09-09T10:58:40.790</Modified>
+      <Modified>2025-09-17T10:36:57.996</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-150.png">
       <PackagePath>splashSplashScreen.scale-150.png</PackagePath>
-      <Modified>2025-09-09T10:58:40.818</Modified>
+      <Modified>2025-09-17T10:36:58.019</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-200.png">
       <PackagePath>splashSplashScreen.scale-200.png</PackagePath>
-      <Modified>2025-09-09T10:58:40.858</Modified>
+      <Modified>2025-09-17T10:36:58.053</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-400.png">
       <PackagePath>splashSplashScreen.scale-400.png</PackagePath>
-      <Modified>2025-09-09T10:58:41.043</Modified>
+      <Modified>2025-09-17T10:36:58.191</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\f\OpenSans-Regular.ttf">
       <PackagePath>OpenSans-Regular.ttf</PackagePath>
@@ -82,253 +82,253 @@
       <PackagePath>OpenSans-Semibold.ttf</PackagePath>
       <Modified>2025-09-09T07:11:12.198</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\background.scale-100.png">
-      <PackagePath>background.scale-100.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.140</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\cardman.scale-100.png">
-      <PackagePath>cardman.scale-100.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.140</Modified>
+    <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\fortune.scale-100.png">
+      <PackagePath>fortune.scale-100.png</PackagePath>
+      <Modified>2025-09-17T10:36:59.128</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\astrologer_full.scale-100.png">
       <PackagePath>astrologer_full.scale-100.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.141</Modified>
+      <Modified>2025-09-17T10:36:59.129</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\fortune_bg.scale-100.png">
       <PackagePath>fortune_bg.scale-100.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.141</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\astrologer_bg.scale-100.png">
-      <PackagePath>astrologer_bg.scale-100.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.141</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\cardman_bg.scale-100.png">
-      <PackagePath>cardman_bg.scale-100.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.142</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\cardman_full.scale-100.png">
-      <PackagePath>cardman_full.scale-100.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.142</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\fortune.scale-100.png">
-      <PackagePath>fortune.scale-100.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.142</Modified>
+      <Modified>2025-09-17T10:36:59.129</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\astrologer.scale-100.png">
       <PackagePath>astrologer.scale-100.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.143</Modified>
+      <Modified>2025-09-17T10:36:59.130</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\fortune_full.scale-100.png">
       <PackagePath>fortune_full.scale-100.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.143</Modified>
+      <Modified>2025-09-17T10:36:59.130</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\background.scale-100.png">
+      <PackagePath>background.scale-100.png</PackagePath>
+      <Modified>2025-09-17T10:36:59.130</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\cardman.scale-100.png">
+      <PackagePath>cardman.scale-100.png</PackagePath>
+      <Modified>2025-09-17T10:36:59.131</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\cardman_bg.scale-100.png">
+      <PackagePath>cardman_bg.scale-100.png</PackagePath>
+      <Modified>2025-09-17T10:36:59.131</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\cardman_full.scale-100.png">
+      <PackagePath>cardman_full.scale-100.png</PackagePath>
+      <Modified>2025-09-17T10:36:59.131</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\astrologer_bg.scale-100.png">
+      <PackagePath>astrologer_bg.scale-100.png</PackagePath>
+      <Modified>2025-09-17T10:36:59.132</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-400.png">
       <PackagePath>appiconLargeTile.scale-400.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.143</Modified>
+      <Modified>2025-09-17T10:36:59.132</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-200.png">
       <PackagePath>appiconLargeTile.scale-200.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.144</Modified>
+      <Modified>2025-09-17T10:36:59.133</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-150.png">
       <PackagePath>appiconLargeTile.scale-150.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.144</Modified>
+      <Modified>2025-09-17T10:36:59.133</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-125.png">
       <PackagePath>appiconLargeTile.scale-125.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.144</Modified>
+      <Modified>2025-09-17T10:36:59.133</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-100.png">
       <PackagePath>appiconLargeTile.scale-100.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.144</Modified>
+      <Modified>2025-09-17T10:36:59.134</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-400.png">
       <PackagePath>appiconWideTile.scale-400.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.145</Modified>
+      <Modified>2025-09-17T10:36:59.134</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-200.png">
       <PackagePath>appiconWideTile.scale-200.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.145</Modified>
+      <Modified>2025-09-17T10:36:59.134</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-150.png">
       <PackagePath>appiconWideTile.scale-150.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.146</Modified>
+      <Modified>2025-09-17T10:36:59.135</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-125.png">
       <PackagePath>appiconWideTile.scale-125.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.146</Modified>
+      <Modified>2025-09-17T10:36:59.135</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-100.png">
       <PackagePath>appiconWideTile.scale-100.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.146</Modified>
+      <Modified>2025-09-17T10:36:59.135</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-400.png">
       <PackagePath>appiconMediumTile.scale-400.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.146</Modified>
+      <Modified>2025-09-17T10:36:59.136</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-200.png">
       <PackagePath>appiconMediumTile.scale-200.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.147</Modified>
+      <Modified>2025-09-17T10:36:59.136</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-150.png">
       <PackagePath>appiconMediumTile.scale-150.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.147</Modified>
+      <Modified>2025-09-17T10:36:59.136</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-125.png">
       <PackagePath>appiconMediumTile.scale-125.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.147</Modified>
+      <Modified>2025-09-17T10:36:59.137</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-100.png">
       <PackagePath>appiconMediumTile.scale-100.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.148</Modified>
+      <Modified>2025-09-17T10:36:59.137</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-400.png">
       <PackagePath>appiconSmallTile.scale-400.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.148</Modified>
+      <Modified>2025-09-17T10:36:59.137</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-200.png">
       <PackagePath>appiconSmallTile.scale-200.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.148</Modified>
+      <Modified>2025-09-17T10:36:59.138</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-150.png">
       <PackagePath>appiconSmallTile.scale-150.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.148</Modified>
+      <Modified>2025-09-17T10:36:59.138</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-125.png">
       <PackagePath>appiconSmallTile.scale-125.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.149</Modified>
+      <Modified>2025-09-17T10:36:59.138</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-100.png">
       <PackagePath>appiconSmallTile.scale-100.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.149</Modified>
+      <Modified>2025-09-17T10:36:59.139</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-400.png">
       <PackagePath>appiconStoreLogo.scale-400.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.149</Modified>
+      <Modified>2025-09-17T10:36:59.139</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-200.png">
       <PackagePath>appiconStoreLogo.scale-200.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.150</Modified>
+      <Modified>2025-09-17T10:36:59.139</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-150.png">
       <PackagePath>appiconStoreLogo.scale-150.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.150</Modified>
+      <Modified>2025-09-17T10:36:59.140</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-125.png">
       <PackagePath>appiconStoreLogo.scale-125.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.150</Modified>
+      <Modified>2025-09-17T10:36:59.140</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-100.png">
       <PackagePath>appiconStoreLogo.scale-100.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.151</Modified>
+      <Modified>2025-09-17T10:36:59.140</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-256.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-256.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.151</Modified>
+      <Modified>2025-09-17T10:36:59.140</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-48.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-48.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.151</Modified>
+      <Modified>2025-09-17T10:36:59.141</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-32.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-32.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.151</Modified>
+      <Modified>2025-09-17T10:36:59.141</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-24.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-24.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.152</Modified>
+      <Modified>2025-09-17T10:36:59.141</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-16.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-16.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.152</Modified>
+      <Modified>2025-09-17T10:36:59.142</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-256.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-256.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.152</Modified>
+      <Modified>2025-09-17T10:36:59.142</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-48.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-48.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.153</Modified>
+      <Modified>2025-09-17T10:36:59.142</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-32.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-32.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.153</Modified>
+      <Modified>2025-09-17T10:36:59.143</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-24.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-24.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.153</Modified>
+      <Modified>2025-09-17T10:36:59.143</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-16.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-16.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.153</Modified>
+      <Modified>2025-09-17T10:36:59.143</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-256.png">
       <PackagePath>appiconLogo.targetsize-256.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.154</Modified>
+      <Modified>2025-09-17T10:36:59.144</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-48.png">
       <PackagePath>appiconLogo.targetsize-48.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.154</Modified>
+      <Modified>2025-09-17T10:36:59.144</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-32.png">
       <PackagePath>appiconLogo.targetsize-32.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.154</Modified>
+      <Modified>2025-09-17T10:36:59.144</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-24.png">
       <PackagePath>appiconLogo.targetsize-24.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.155</Modified>
+      <Modified>2025-09-17T10:36:59.145</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-16.png">
       <PackagePath>appiconLogo.targetsize-16.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.155</Modified>
+      <Modified>2025-09-17T10:36:59.145</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-400.png">
       <PackagePath>appiconLogo.scale-400.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.155</Modified>
+      <Modified>2025-09-17T10:36:59.145</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-200.png">
       <PackagePath>appiconLogo.scale-200.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.156</Modified>
+      <Modified>2025-09-17T10:36:59.145</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-150.png">
       <PackagePath>appiconLogo.scale-150.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.156</Modified>
+      <Modified>2025-09-17T10:36:59.146</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-125.png">
       <PackagePath>appiconLogo.scale-125.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.156</Modified>
+      <Modified>2025-09-17T10:36:59.146</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-100.png">
       <PackagePath>appiconLogo.scale-100.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.156</Modified>
+      <Modified>2025-09-17T10:36:59.146</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appicon.ico">
       <PackagePath>appicon.ico</PackagePath>
-      <Modified>2025-09-09T10:58:42.157</Modified>
+      <Modified>2025-09-17T10:36:59.147</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-400.png">
       <PackagePath>dotnet_bot.scale-400.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.157</Modified>
+      <Modified>2025-09-17T10:36:59.147</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-200.png">
       <PackagePath>dotnet_bot.scale-200.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.157</Modified>
+      <Modified>2025-09-17T10:36:59.147</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-150.png">
       <PackagePath>dotnet_bot.scale-150.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.158</Modified>
+      <Modified>2025-09-17T10:36:59.148</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-125.png">
       <PackagePath>dotnet_bot.scale-125.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.158</Modified>
+      <Modified>2025-09-17T10:36:59.148</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-100.png">
       <PackagePath>dotnet_bot.scale-100.png</PackagePath>
-      <Modified>2025-09-09T10:58:42.158</Modified>
+      <Modified>2025-09-17T10:36:59.148</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\MysticWalley.deps.json">
       <PackagePath>MysticWalley.deps.json</PackagePath>
-      <Modified>2025-09-09T10:58:44.702</Modified>
+      <Modified>2025-09-17T10:37:00.204</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\.nuget\packages\microsoft.windows.sdk.net.ref\10.0.19041.57\lib\net8.0\Microsoft.Windows.SDK.NET.dll">
       <PackagePath>Microsoft.Windows.SDK.NET.dll</PackagePath>

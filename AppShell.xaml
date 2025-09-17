@@ -4,5 +4,6 @@
        x:Class="MysticWalley.AppShell">
 
     <ShellContent Title="Главная"
+                  Route="MainPage"
                   ContentTemplate="{DataTemplate views:MainPage}" />
 </Shell>

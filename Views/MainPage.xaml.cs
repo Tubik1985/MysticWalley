@@ -5,10 +5,14 @@ namespace MysticWalley.Views;
 
 public partial class MainPage : ContentPage
 {
-    public MainPage()
+    private readonly CharacterService _characterService;
+
+    public MainPage(CharacterService characterService)
     {
         InitializeComponent();
-        CharactersView.ItemsSource = CharacterService.GetCharacters();
+        _characterService = characterService;
+
+        CharactersView.ItemsSource = _characterService.GetCharacters();
     }
 
     private async void OnCharacterSelected(object sender, SelectionChangedEventArgs e)
@@ -17,10 +21,12 @@ public partial class MainPage : ContentPage
         {
             CharactersView.SelectedItem = null;
 
-            // Лёгкий fade переход
-            await this.FadeTo(0.8, 150, Easing.CubicInOut);
-            await Navigation.PushAsync(new PredictionPage(selected));
-            await this.FadeTo(1, 150, Easing.CubicInOut);
+            // Навигация по Shell + передаём объект
+            await Shell.Current.GoToAsync(nameof(PredictionPage), true,
+                new Dictionary<string, object>
+                {
+                    { "Character", selected }
+                });
         }
     }
 }

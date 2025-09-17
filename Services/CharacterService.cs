@@ -2,9 +2,9 @@
 
 namespace MysticWalley.Services;
 
-public static class CharacterService
+public class CharacterService
 {
-    public static List<Character> GetCharacters() => new()
+    public List<Character> GetCharacters() => new()
     {
         new Character {
             Name = "Астролог",

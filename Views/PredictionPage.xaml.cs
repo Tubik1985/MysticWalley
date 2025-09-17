@@ -1,47 +1,47 @@
 using MysticWalley.Models;
+using MysticWalley.Services;
 
 namespace MysticWalley.Views;
 
+[QueryProperty(nameof(Character), "Character")]
 public partial class PredictionPage : ContentPage
 {
-    private readonly Character _character;
+    private readonly PredictionService _predictionService;
 
-    public PredictionPage(Character character)
+    public Character? Character { get; set; }
+
+    public PredictionPage(PredictionService predictionService)
     {
         InitializeComponent();
-        _character = character;
-
-        // Заполняем данными героя
-        CharacterLabel.Text = _character.Name;
-        CharacterIcon.Source = _character.Portrait;
-        CharacterDescription.Text = _character.Description;
-        BackgroundImage.Source = _character.Background;
+        _predictionService = predictionService;
     }
 
     protected override async void OnAppearing()
     {
         base.OnAppearing();
 
-        // Плавное появление фона и портрета
+        if (Character != null)
+        {
+            CharacterLabel.Text = Character.Name;
+            CharacterIcon.Source = Character.Portrait;
+            CharacterDescription.Text = Character.Description;
+            BackgroundImage.Source = Character.Background;
+        }
+
+        // Анимация плавного проявления
         await BackgroundImage.FadeTo(1, 800, Easing.CubicInOut);
         await CharacterIcon.FadeTo(1, 600, Easing.CubicInOut);
     }
 
     private async void OnPredictClicked(object sender, EventArgs e)
     {
-        string[] phrases =
+        if (Character != null)
         {
-            "Сегодня хороший день для новых начинаний.",
-            "Слушай свою интуицию — она тебя не подведёт.",
-            "Мелочи сегодня важнее, чем кажутся.",
-            "Избегай пустых разговоров — они крадут энергию."
-        };
+            var result = await _predictionService.GetPredictionAsync(Character.Name);
+            ResultLabel.Text = result;
 
-        var rnd = new Random();
-        ResultLabel.Text = $"{_character.Name} предсказывает: \"{phrases[rnd.Next(phrases.Length)]}\"";
-
-        // Анимация проявления блока предсказания
-        ResultFrame.Opacity = 0;
-        await ResultFrame.FadeTo(1, 600, Easing.CubicInOut);
+            ResultFrame.Opacity = 0;
+            await ResultFrame.FadeTo(1, 600, Easing.CubicInOut);
+        }
     }
 }

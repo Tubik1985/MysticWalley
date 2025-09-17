@@ -61,11 +61,8 @@
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\f\OpenSans-Semibold.ttf">
       <PackagePath>OpenSans-Semibold.ttf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\background.scale-100.png">
-      <PackagePath>background.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\cardman.scale-100.png">
-      <PackagePath>cardman.scale-100.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\fortune.scale-100.png">
+      <PackagePath>fortune.scale-100.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\astrologer_full.scale-100.png">
       <PackagePath>astrologer_full.scale-100.png</PackagePath>
@@ -73,8 +70,17 @@
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\fortune_bg.scale-100.png">
       <PackagePath>fortune_bg.scale-100.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\astrologer_bg.scale-100.png">
-      <PackagePath>astrologer_bg.scale-100.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\astrologer.scale-100.png">
+      <PackagePath>astrologer.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\fortune_full.scale-100.png">
+      <PackagePath>fortune_full.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\background.scale-100.png">
+      <PackagePath>background.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\cardman.scale-100.png">
+      <PackagePath>cardman.scale-100.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\cardman_bg.scale-100.png">
       <PackagePath>cardman_bg.scale-100.png</PackagePath>
@@ -82,14 +88,8 @@
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\cardman_full.scale-100.png">
       <PackagePath>cardman_full.scale-100.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\fortune.scale-100.png">
-      <PackagePath>fortune.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\astrologer.scale-100.png">
-      <PackagePath>astrologer.scale-100.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\fortune_full.scale-100.png">
-      <PackagePath>fortune_full.scale-100.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\astrologer_bg.scale-100.png">
+      <PackagePath>astrologer_bg.scale-100.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\TUBIK\source\repos\MysticWalley\MysticWalley\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-400.png">
       <PackagePath>appiconLargeTile.scale-400.png</PackagePath>
