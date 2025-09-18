@@ -64,6 +64,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\TestTokenPage.xaml.cs">
+	    <DependentUpon>TestTokenPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\TestTokenPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\PredictionPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

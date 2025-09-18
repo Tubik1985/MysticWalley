@@ -2,19 +2,15 @@
 
 public class PredictionService
 {
-    private static readonly string[] _phrases =
-    {
-        "Сегодня хороший день для новых начинаний.",
-        "Слушай свою интуицию — она тебя не подведёт.",
-        "Мелочи сегодня важнее, чем кажутся.",
-        "Избегай пустых разговоров — они крадут энергию."
-    };
+    private readonly GigaChatClient _giga;
 
-    private readonly Random _rnd = new();
+    public PredictionService(GigaChatClient gigaChatClient)
+    {
+        _giga = gigaChatClient;
+    }
 
     public Task<string> GetPredictionAsync(string characterName)
     {
-        var phrase = _phrases[_rnd.Next(_phrases.Length)];
-        return Task.FromResult($"{characterName} предсказывает: \"{phrase}\"");
+        return _giga.GetPredictionAsync(characterName, "Поделись мистическим предсказанием");
     }
 }

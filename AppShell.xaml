@@ -11,5 +11,8 @@
         <ShellContent Title="История"
                       ContentTemplate="{DataTemplate views:HistoryPage}"
                       Route="HistoryPage" />
+        <ShellContent Title="TestToken"
+              ContentTemplate="{DataTemplate views:TestTokenPage}" 
+              Route="TestTokenPage"/>
     </TabBar>
 </Shell>

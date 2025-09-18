@@ -63,3 +63,9 @@ build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MysticWalley.Views.PredictionPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\PredictionPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\PredictionPage.xaml
+
+[C:/Users/TUBIK/source/repos/MysticWalley/MysticWalley/Views/TestTokenPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MysticWalley.Views.TestTokenPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\TestTokenPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\TestTokenPage.xaml

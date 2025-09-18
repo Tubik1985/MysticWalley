@@ -38,14 +38,13 @@ public partial class PredictionPage : ContentPage
     {
         if (Character == null) return;
 
-        // ⚡ Предсказание через сервис
         var result = await _predictionService.GetPredictionAsync(Character.Name);
+
         ResultLabel.Text = result;
 
-        // ⚡ Сохраняем в историю
         await _historyService.SaveMessageAsync(new ChatMessage
         {
-            UserMessage = "Получить предсказание",
+            UserMessage = "Предсказание",
             Response = result,
             Character = Character.Name,
             Timestamp = DateTime.Now

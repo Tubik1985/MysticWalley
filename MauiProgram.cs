@@ -18,18 +18,46 @@ public static class MauiProgram
             });
 
         // регистрация сервисов
-        builder.Services.AddSingleton<CharacterService>();
+        builder.Services.AddSingleton<GigaTokenService>();
+        builder.Services.AddSingleton<GigaChatClient>();
         builder.Services.AddSingleton<PredictionService>();
+
+        builder.Services.AddSingleton<CharacterService>();
         builder.Services.AddSingleton<HistoryService>();
 
-        // регистрация страниц
         builder.Services.AddSingleton<MainPage>();
         builder.Services.AddTransient<PredictionPage>();
         builder.Services.AddTransient<HistoryPage>();
+        builder.Services.AddTransient<TestTokenPage>();
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
 
-        return builder.Build();
+        // строим приложение
+        var app = builder.Build();
+
+        // ⚡ Проверка получения токена при запуске
+        Task.Run(async () =>
+        {
+            try
+            {
+                var tokenService = app.Services.GetService<GigaTokenService>();
+                if (tokenService != null)
+                {
+                    var token = await tokenService.GetTokenAsync();
+                    Console.WriteLine($"[MauiProgram] УСПЕХ. Токен начинается с: {token.Substring(0, 20)}...");
+                }
+                else
+                {
+                    Console.WriteLine("[MauiProgram] Ошибка: GigaTokenService == null");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[MauiProgram] Ошибка получения токена: {ex.Message}");
+            }
+        });
+
+        return app;
     }
 }
