@@ -3,28 +3,35 @@
              x:Class="MysticWalley.Views.HistoryPage"
              Title="История предсказаний">
 
-    <VerticalStackLayout>
+    <Grid RowDefinitions="Auto,*">
         <!-- Кнопка очистки -->
         <Button Text="🗑 Очистить историю"
                 BackgroundColor="DarkRed"
                 TextColor="White"
                 Clicked="OnClearHistoryClicked"
                 Margin="10"
-                HorizontalOptions="Center"/>
+                HorizontalOptions="Center"
+                Grid.Row="0"/>
 
         <!-- Список сообщений -->
-        <CollectionView x:Name="HistoryView" Margin="10">
+        <CollectionView x:Name="HistoryView"
+                        Margin="10"
+                        Grid.Row="1">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Frame BorderColor="Purple" Margin="4" Padding="8">
                         <VerticalStackLayout>
-                            <Label Text="{Binding Character}" FontAttributes="Bold" TextColor="Purple"/>
+                            <Label Text="{Binding Character}"
+                                   FontAttributes="Bold"
+                                   TextColor="Purple"/>
                             <Label Text="{Binding Response}" TextColor="Black"/>
-                            <Label Text="{Binding Timestamp}" FontSize="10" TextColor="Gray"/>
+                            <Label Text="{Binding Timestamp}"
+                                   FontSize="10"
+                                   TextColor="Gray"/>
                         </VerticalStackLayout>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </VerticalStackLayout>
+    </Grid>
 </ContentPage>
