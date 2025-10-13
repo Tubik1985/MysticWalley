@@ -17,26 +17,30 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
 
-        // регистрация сервисов
+        // ===== Сервисы ===================================================
         builder.Services.AddSingleton<GigaTokenService>();
         builder.Services.AddSingleton<GigaChatClient>();
         builder.Services.AddSingleton<PredictionService>();
-
         builder.Services.AddSingleton<CharacterService>();
         builder.Services.AddSingleton<HistoryService>();
-
+        builder.Services.AddSingleton<WhisperService>();
+        // >>> добавляем StoryService <<<
+        builder.Services.AddSingleton<StoryService>();
+       
+        // ===== Страницы ===================================================
         builder.Services.AddSingleton<MainPage>();
         builder.Services.AddTransient<PredictionPage>();
         builder.Services.AddTransient<HistoryPage>();
         builder.Services.AddTransient<TestTokenPage>();
+        // builder.Services.AddTransient<RitualPage>();  // если появится
+
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
 
-        // строим приложение
         var app = builder.Build();
 
-        // ⚡ Проверка получения токена при запуске
+        // Проверка Giga‑токена (асинхронный запуск)
         Task.Run(async () =>
         {
             try

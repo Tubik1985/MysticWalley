@@ -5,34 +5,60 @@
              Title="Мистическая Долина"
              BackgroundImageSource="background.png">
 
-    <!-- Список героев -->
-    <CollectionView x:Name="CharactersView"
-                    SelectionMode="Single"
-                    SelectionChanged="OnCharacterSelected"
-                    Margin="20">
+    <Grid RowDefinitions="*,Auto" Margin="12">
 
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <VerticalStackLayout Spacing="5" Padding="10" HorizontalOptions="Center">
-                    <!-- Иконка -->
-                    <Image Source="{Binding Icon}" 
-                           WidthRequest="96" HeightRequest="96"
-                           HorizontalOptions="Center"/>
-                    <!-- Имя героя, белый с подложкой -->
-                    <Frame Padding="4"
-                           BackgroundColor="#80000000"
-                           CornerRadius="6"
-                           HasShadow="False"
-                           HorizontalOptions="Center">
-                        <Label Text="{Binding Name}" 
-                               FontSize="20"
-                               FontAttributes="Bold"
-                               TextColor="White"
-                               HorizontalOptions="Center"/>
-                    </Frame>
-                </VerticalStackLayout>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
+        <!-- ==== Список героев ==== -->
+        <CollectionView x:Name="CharactersView"
+                        SelectionMode="Single"
+                        SelectionChanged="OnCharacterSelected"
+                        Margin="10">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout Spacing="5"
+                                         Padding="10"
+                                         HorizontalOptions="Center">
+                        <!-- Иконка -->
+                        <Image Source="{Binding Icon}"
+                               WidthRequest="96"
+                               HeightRequest="96"
+                               HorizontalOptions="Center" />
+                        <!-- Имя героя -->
+                        <Frame Padding="4"
+                               BackgroundColor="#80000000"
+                               CornerRadius="6"
+                               HasShadow="False"
+                               HorizontalOptions="Center">
+                            <Label Text="{Binding Name}"
+                                   FontSize="20"
+                                   FontAttributes="Bold"
+                                   TextColor="White"
+                                   HorizontalOptions="Center" />
+                        </Frame>
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
 
-    </CollectionView>
+        <!-- ==== Нижняя панель кнопок ==== -->
+        <HorizontalStackLayout Grid.Row="1"
+                               Spacing="20"
+                               HorizontalOptions="Center"
+                               Margin="0,10,0,20">
+
+            <Button Text="📜 История"
+                    Clicked="OnHistoryClicked"
+                    BackgroundColor="#503050"
+                    TextColor="white"
+                    CornerRadius="12"
+                    Padding="14,8" />
+
+            <Button Text="🕯 Шёпот Долины"
+                    Clicked="OnWhisperClicked"
+                    BackgroundColor="#503050"
+                    TextColor="White"
+                    CornerRadius="12"
+                    Padding="14,8" />
+
+        </HorizontalStackLayout>
+    </Grid>
 </ContentPage>

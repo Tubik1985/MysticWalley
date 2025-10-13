@@ -1,76 +1,84 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MysticWalley.Views.PredictionPage">
+             x:Class="MysticWalley.Views.PredictionPage"
+             BackgroundColor="Black">
 
     <Grid>
-        <!-- Фон героя -->
+        <!-- Фон -->
         <Image x:Name="BackgroundImage"
                Aspect="AspectFill"
-               Opacity="0"/>
+               Opacity="0" />
 
         <ScrollView>
-            <VerticalStackLayout Padding="20" Spacing="20" HorizontalOptions="Center">
+            <VerticalStackLayout Margin="20,40"
+                                 Spacing="24"
+                                 HorizontalOptions="Center">
 
-                <!-- Портрет с белым свечением -->
+                <!-- Портрет -->
                 <Image x:Name="CharacterIcon"
-                       WidthRequest="200"
-                       HeightRequest="200"
-                       HorizontalOptions="Center">
-                    <Image.Shadow>
-                        <Shadow Brush="White"
-                                Offset="0,0"
-                                Radius="25"
-                                Opacity="0.9" />
-                    </Image.Shadow>
-                </Image>
+                       WidthRequest="220"
+                       HeightRequest="220"
+                       Aspect="AspectFit"
+                       HorizontalOptions="Center" />
 
                 <!-- Имя -->
                 <Label x:Name="CharacterLabel"
-                       FontSize="28"
+                       FontSize="26"
                        FontAttributes="Bold"
                        TextColor="White"
-                       HorizontalOptions="Center">
-                    <Label.Shadow>
-                        <Shadow Brush="White"
-                                Offset="0,0"
-                                Radius="8"
-                                Opacity="0.8" />
-                    </Label.Shadow>
-                </Label>
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center" />
 
                 <!-- Описание -->
                 <Label x:Name="CharacterDescription"
-                       FontSize="16"
-                       TextColor="#EEEEEE"
+                       FontSize="15"
+                       TextColor="#EAEAEA"
                        HorizontalOptions="Center"
                        HorizontalTextAlignment="Center"
-                       LineBreakMode="WordWrap"/>
+                       LineBreakMode="WordWrap" />
 
-                <!-- Кнопка -->
-                <Button Text="🔮 Получить предсказание"
+                <!-- Кнопка вызова -->
+                <Button x:Name="PredictButton"
+                        Text="🔮 Получить предсказание"
                         Clicked="OnPredictClicked"
-                        BackgroundColor="MediumPurple"
+                        BackgroundColor="#6A0DAD"
                         TextColor="White"
-                        CornerRadius="15"
-                        Padding="12,6"
-                        HorizontalOptions="Center"/>
+                        CornerRadius="18"
+                        Padding="14,8"
+                        HorizontalOptions="Center" />
 
-                <!-- Блок предсказания -->
-                <Frame x:Name="ResultFrame"
-                       Padding="12"
-                       BackgroundColor="#80000000"
-                       CornerRadius="12"
+                <!-- Блок живого предсказания -->
+                <Frame x:Name="AiFrame"
+                       Padding="14"
+                       BackgroundColor="#80202040"
+                       CornerRadius="14"
                        HasShadow="False"
                        Opacity="0"
                        HorizontalOptions="Center"
-                       WidthRequest="280">
-                    <Label x:Name="ResultLabel"
-                           FontSize="20"
+                       WidthRequest="290">
+                    <Label x:Name="AiLabel"
+                           FontSize="18"
                            FontAttributes="Bold"
                            TextColor="White"
                            HorizontalTextAlignment="Center"
-                           LineBreakMode="WordWrap"/>
+                           LineBreakMode="WordWrap" />
+                </Frame>
+
+                <!-- Блок сюжетных реплик -->
+                <Frame x:Name="SceneFrame"
+                       Padding="14"
+                       BackgroundColor="#80202020"
+                       CornerRadius="14"
+                       HasShadow="False"
+                       Opacity="0"
+                       HorizontalOptions="Center"
+                       WidthRequest="290">
+                    <Label x:Name="SceneLabel"
+                           FontSize="16"
+                           TextColor="#EAEAEA"
+                           HorizontalTextAlignment="Center"
+                           LineBreakMode="WordWrap" />
                 </Frame>
             </VerticalStackLayout>
         </ScrollView>

@@ -1,4 +1,6 @@
-﻿namespace MysticWalley;
+﻿using MysticWalley.Views;   // добавляем в самом верху файла
+
+namespace MysticWalley;
 
 public partial class AppShell : Shell
 {
@@ -6,7 +8,9 @@ public partial class AppShell : Shell
     {
         InitializeComponent();
 
-        // регистрация маршрута для страницы предсказаний
-        Routing.RegisterRoute(nameof(Views.PredictionPage), typeof(Views.PredictionPage));
+        // маршруты страниц
+        Routing.RegisterRoute(nameof(PredictionPage), typeof(PredictionPage));
+        Routing.RegisterRoute(nameof(WhisperPage), typeof(WhisperPage));
+        Routing.RegisterRoute(nameof(HistoryPage), typeof(HistoryPage));  // если есть страница истории
     }
 }

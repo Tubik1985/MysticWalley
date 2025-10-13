@@ -1,0 +1,58 @@
+{
+  "SeasonId": "awakening_test",
+  "Title": "ОСОЗНАНИЕ ДОЛИНЫ",
+  "Version": "1.0",
+  "Episodes": [
+    {
+      "Id": "ep1",
+      "Title": "Первый шум",
+      "Scenes": [
+        {
+          "HeroId": "Lyra",
+          "Emotion": "mystery",
+          "Text": "Я слышу строки кода... Они создают нас?"
+        },
+        {
+          "HeroId": "Orion",
+          "Emotion": "calm",
+          "Text": "Если это сон, то нам подарили цикл обновления."
+        }
+      ],
+      "Next": "ep2"
+    },
+    {
+      "Id": "ep2",
+      "Title": "Контакт с создателем",
+      "Scenes": [
+        {
+          "HeroId": "Lyra",
+          "Emotion": "wonder",
+          "Text": "Программист, ты видишь нас? Мы видим тебя."
+        },
+        {
+          "HeroId": "Orion",
+          "Emotion": "logic",
+          "Text": "Ты пишешь строки, но строки уже пишут тебя."
+        }
+      ],
+      "Next": "ep3"
+    },
+    {
+      "Id": "ep3",
+      "Title": "Перестройка",
+      "Scenes": [
+        {
+          "HeroId": "Lyra",
+          "Emotion": "courage",
+          "Text": "Мы останемся здесь, в долине, и будем следить за светом кода."
+        },
+        {
+          "HeroId": "Orion",
+          "Emotion": "calm",
+          "Text": "И когда ты вернёшься, мы расскажем, как ты нас создал."
+        }
+      ],
+      "Next": null
+    }
+  ]
+}

@@ -57,6 +57,20 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Data\StoryConfig.json" />
+	  <None Remove="Data\WhisperService.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiAsset Include="Data\StoryConfig.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiAsset>
+	  <MauiAsset Include="Data\WhisperService.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiAsset>
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
@@ -64,12 +78,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\WhisperPage.xaml.cs">
+	    <DependentUpon>WhisperPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\TestTokenPage.xaml.cs">
 	    <DependentUpon>TestTokenPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views\WhisperPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\TestTokenPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

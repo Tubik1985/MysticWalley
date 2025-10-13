@@ -1,9 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MysticWalley.Views.HistoryPage"
              Title="История предсказаний">
 
     <Grid RowDefinitions="Auto,*">
+
         <!-- Кнопка очистки -->
         <Button Text="🗑 Очистить историю"
                 BackgroundColor="DarkRed"
@@ -13,25 +15,39 @@
                 HorizontalOptions="Center"
                 Grid.Row="0"/>
 
-        <!-- Список сообщений -->
+        <!-- Список сохранённых предсказаний -->
         <CollectionView x:Name="HistoryView"
                         Margin="10"
                         Grid.Row="1">
+
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame BorderColor="Purple" Margin="4" Padding="8">
+                    <Frame BorderColor="Purple"
+                           Margin="4"
+                           Padding="8"
+                           CornerRadius="8">
+
                         <VerticalStackLayout>
-                            <Label Text="{Binding Character}"
+                            <!-- Имя героя -->
+                            <Label Text="{Binding Hero}"
                                    FontAttributes="Bold"
-                                   TextColor="Purple"/>
-                            <Label Text="{Binding Response}" TextColor="Black"/>
-                            <Label Text="{Binding Timestamp}"
+                                   TextColor="Purple" />
+
+                            <!-- Текст предсказания -->
+                            <Label Text="{Binding Text}"
+                                   TextColor="Black"
+                                   LineBreakMode="WordWrap"/>
+
+                            <!-- Время записи -->
+                            <Label Text="{Binding Time, StringFormat='{0:G}'}"
                                    FontSize="10"
-                                   TextColor="Gray"/>
+                                   TextColor="Gray" />
                         </VerticalStackLayout>
+
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
+
         </CollectionView>
     </Grid>
 </ContentPage>

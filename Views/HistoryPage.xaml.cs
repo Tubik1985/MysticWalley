@@ -1,4 +1,4 @@
-using MysticWalley.Services;
+﻿using MysticWalley.Services;
 
 namespace MysticWalley.Views;
 
@@ -12,22 +12,30 @@ public partial class HistoryPage : ContentPage
         _historyService = historyService;
     }
 
+    // 🔹 Загружаем записи при каждом появлении страницы
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-        HistoryView.ItemsSource = await _historyService.GetHistoryAsync();
+
+        var items = await _historyService.GetAllAsync(); // ← верное поле и асинхронный метод
+        HistoryView.ItemsSource = items;
     }
+
+    // 🔹 Очистка истории по кнопке
     private async void OnClearHistoryClicked(object sender, EventArgs e)
     {
-        var confirm = await DisplayAlert(
-            "�������������",
-            "����� �������� ��� ������� ������������?",
-            "��", "������");
+        bool confirm = await DisplayAlert(
+            "Подтверждение",
+            "Очистить всю историю предсказаний?",
+            "Да", "Отмена");
 
-        if (confirm)
-        {
-            await _historyService.ClearHistoryAsync();
-            HistoryView.ItemsSource = await _historyService.GetHistoryAsync();
-        }
+        if (!confirm)
+            return;
+
+        await _historyService.ClearHistoryAsync();
+
+        // после очистки читаем список заново — теперь он будет пуст
+        var items = await _historyService.GetAllAsync();
+        HistoryView.ItemsSource = items;
     }
 }
