@@ -6,15 +6,14 @@
              Title="Шёпот долины">
 
     <ScrollView>
-        <VerticalStackLayout Margin="16,12">
+        <VerticalStackLayout Margin="16,12" Spacing="12">
 
             <!-- Заголовок страницы -->
             <Label Text="🕯 Архив шёпотов"
                    FontAttributes="Bold"
                    FontSize="22"
                    TextColor="White"
-                   HorizontalOptions="Center"
-                   Margin="0,0,0,12" />
+                   HorizontalOptions="Center" />
 
             <!-- Список шёпотов -->
             <CollectionView x:Name="WhisperList">
@@ -27,13 +26,14 @@
                                CornerRadius="10">
 
                             <VerticalStackLayout Spacing="4">
-                                <!-- Герой -->
+
+                                <!-- Имя героя -->
                                 <Label Text="{Binding Hero}"
                                        FontAttributes="Bold"
                                        FontSize="16"
                                        TextColor="#AE81FF" />
 
-                                <!-- Эмоция (если есть) -->
+                                <!-- Эмоция -->
                                 <Label Text="{Binding Emotion}"
                                        FontSize="12"
                                        TextColor="#7EB6FF"
@@ -56,6 +56,17 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+
+            <!-- 🧹 Кнопка очистки архива -->
+            <Button Text="🗑 Очистить шёпоты долины"
+                    Clicked="OnClearWhispersClicked"
+                    BackgroundColor="DarkRed"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    CornerRadius="8"
+                    HeightRequest="44"
+                    HorizontalOptions="Center"
+                    Margin="0,12,0,24" />
 
         </VerticalStackLayout>
     </ScrollView>

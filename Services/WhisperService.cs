@@ -44,10 +44,7 @@ namespace MysticWalley.Services
         {
             try
             {
-                // гарантируем, что файл существует
                 await InitializeAsync();
-
-                // подгружаем актуальные данные
                 await LoadAsync();
 
                 _entries.Add(new WhisperEntry
@@ -62,7 +59,6 @@ namespace MysticWalley.Services
                     new JsonSerializerOptions { WriteIndented = true });
 
                 await File.WriteAllTextAsync(_filePath, json);
-
                 Console.WriteLine($"[WhisperService] Added improvisation for {hero}");
             }
             catch (Exception ex)
@@ -77,10 +73,9 @@ namespace MysticWalley.Services
             try
             {
                 _entries.Clear();
-                if (File.Exists(_filePath))
-                    File.Delete(_filePath);
 
-                await Task.CompletedTask;
+                // Перезаписываем файл пустым массивом, чтобы он существовал всегда
+                await File.WriteAllTextAsync(_filePath, "[]");
                 Console.WriteLine($"[WhisperService] Cleared {_filePath}");
             }
             catch (Exception ex)
@@ -103,18 +98,16 @@ namespace MysticWalley.Services
                 var json = await File.ReadAllTextAsync(_filePath);
                 if (string.IsNullOrWhiteSpace(json))
                 {
-                    Console.WriteLine("[WhisperService] File is empty, skipping load.");
+                    _entries.Clear();
+                    Console.WriteLine("[WhisperService] File is empty — list cleared.");
                     return;
                 }
 
                 var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-                var list = JsonSerializer.Deserialize<List<WhisperEntry>>(json, options);
+                var list = JsonSerializer.Deserialize<List<WhisperEntry>>(json, options) ?? new List<WhisperEntry>();
 
-                if (list?.Count > 0)
-                {
-                    _entries.Clear();
-                    _entries.AddRange(list);
-                }
+                _entries.Clear();
+                _entries.AddRange(list);
                 Console.WriteLine($"[WhisperService] Loaded {_entries.Count} entries from {_filePath}");
             }
             catch (Exception ex)
