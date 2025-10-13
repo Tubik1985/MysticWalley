@@ -16,6 +16,7 @@ public partial class WhisperPage : ContentPage
         _whispers = whispers;
     }
 
+    // 🪤 Мини‑ловушка — максимально информативное логирование
     protected override async void OnAppearing()
     {
         base.OnAppearing();
@@ -23,6 +24,7 @@ public partial class WhisperPage : ContentPage
         try
         {
             var path = Path.Combine(FileSystem.AppDataDirectory, "whispers.json");
+            Console.WriteLine($"[WhisperPage] AppDataDirectory: {FileSystem.AppDataDirectory}");
 
             // 🛠 Создаём файл только один раз — если его ещё нет
             if (!File.Exists(path))
@@ -35,16 +37,30 @@ public partial class WhisperPage : ContentPage
                 Console.WriteLine($"[WhisperPage] Existing whispers file found: {path}");
             }
 
-            // 📚 Загружаем все записи, накопленные в приложении
+            // 📚 Загружаем все записи
             var items = await _whispers.GetAllAsync();
-            WhisperList.ItemsSource = items;
 
+            // Проверим на null или пустой результат — тоже может вызвать падение при биндинге
+            if (items == null)
+            {
+                Console.WriteLine("[WhisperPage] Warning: whisper list is null.");
+                await DisplayAlert("Диагностика", "Список шёпотов пуст (null).", "OK");
+                return;
+            }
+
+            WhisperList.ItemsSource = items.ToList();
             Console.WriteLine($"[WhisperPage] Loaded {items.Count()} Whisper entries.");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"[WhisperPage] Error loading whispers: {ex.Message}");
-            await DisplayAlert("Ошибка", "Не удалось загрузить шёпоты долины.", "OK");
+            // 🧾 Подробный отчёт
+            var msg =
+                $"Тип: {ex.GetType().Name}\n" +
+                $"Сообщение: {ex.Message}\n\n" +
+                $"StackTrace:\n{ex.StackTrace}";
+
+            Console.WriteLine($"[WhisperPage] Error loading whispers: {msg}");
+            await DisplayAlert("Ошибка при загрузке шёпотов", msg, "OK");
         }
     }
 }
