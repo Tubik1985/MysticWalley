@@ -22,18 +22,24 @@ public partial class WhisperPage : ContentPage
 
         try
         {
-            // 🧹 Очистить старый файл при первой инициализации, чтобы не тащить старые данные
-            // ⚠️ Оставь эту строку пока идёт отладка; потом можно закомментировать
-         //   await _whispers.ClearAsync();
+            var path = Path.Combine(FileSystem.AppDataDirectory, "whispers.json");
 
-            // 💫 Создаёт локальную копию из ресурсов при первом запуске (если файла нет)
-            await _whispers.InitializeAsync();
+            // 🛠 Создаём файл только один раз — если его ещё нет
+            if (!File.Exists(path))
+            {
+                await _whispers.InitializeAsync();
+                Console.WriteLine($"[WhisperPage] whispers.json created at {path}");
+            }
+            else
+            {
+                Console.WriteLine($"[WhisperPage] Existing whispers file found: {path}");
+            }
 
-            // 📚 Загружаем все шёпоты и привязываем к списку
+            // 📚 Загружаем все записи, накопленные в приложении
             var items = await _whispers.GetAllAsync();
             WhisperList.ItemsSource = items;
 
-            Console.WriteLine($"[WhisperPage] Loaded {items.Count()} whispers.");
+            Console.WriteLine($"[WhisperPage] Loaded {items.Count()} Whisper entries.");
         }
         catch (Exception ex)
         {
