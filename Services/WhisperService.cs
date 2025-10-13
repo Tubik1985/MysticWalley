@@ -9,6 +9,7 @@ namespace MysticWalley.Services
 
         private readonly List<WhisperEntry> _entries = new();
 
+        // 💫 Инициализация: создаёт копию ресурса при первом запуске
         public async Task InitializeAsync()
         {
             try
@@ -31,16 +32,22 @@ namespace MysticWalley.Services
             }
         }
 
+        // 📚 Получить все шёпоты
         public async Task<IEnumerable<WhisperEntry>> GetAllAsync()
         {
             await LoadAsync();
             return _entries.OrderByDescending(x => x.Time);
         }
 
+        // 🪶 Добавить новую импровизацию
         public async Task AddImprovisationAsync(string hero, string emotion, string text)
         {
             try
             {
+                // гарантируем, что файл существует
+                await InitializeAsync();
+
+                // подгружаем актуальные данные
                 await LoadAsync();
 
                 _entries.Add(new WhisperEntry
@@ -53,7 +60,9 @@ namespace MysticWalley.Services
 
                 var json = JsonSerializer.Serialize(_entries,
                     new JsonSerializerOptions { WriteIndented = true });
+
                 await File.WriteAllTextAsync(_filePath, json);
+
                 Console.WriteLine($"[WhisperService] Added improvisation for {hero}");
             }
             catch (Exception ex)
@@ -62,29 +71,60 @@ namespace MysticWalley.Services
             }
         }
 
+        // 🧹 Очистить локальный архив шёпотов
         public async Task ClearAsync()
         {
-            _entries.Clear();
-            if (File.Exists(_filePath))
-                File.Delete(_filePath);
+            try
+            {
+                _entries.Clear();
+                if (File.Exists(_filePath))
+                    File.Delete(_filePath);
 
-            await Task.CompletedTask;
+                await Task.CompletedTask;
+                Console.WriteLine($"[WhisperService] Cleared {_filePath}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[WhisperService] ClearAsync error: {ex.Message}");
+            }
         }
 
+        // 🔧 Загрузка данных из файла
         private async Task LoadAsync()
         {
-            if (!File.Exists(_filePath))
-                return;
+            try
+            {
+                if (!File.Exists(_filePath))
+                {
+                    Console.WriteLine($"[WhisperService] File not found: {_filePath}");
+                    return;
+                }
 
-            var json = await File.ReadAllTextAsync(_filePath);
-            var list = JsonSerializer.Deserialize<List<WhisperEntry>>(json);
+                var json = await File.ReadAllTextAsync(_filePath);
+                if (string.IsNullOrWhiteSpace(json))
+                {
+                    Console.WriteLine("[WhisperService] File is empty, skipping load.");
+                    return;
+                }
 
-            _entries.Clear();
-            if (list != null)
-                _entries.AddRange(list);
+                var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+                var list = JsonSerializer.Deserialize<List<WhisperEntry>>(json, options);
+
+                if (list?.Count > 0)
+                {
+                    _entries.Clear();
+                    _entries.AddRange(list);
+                }
+                Console.WriteLine($"[WhisperService] Loaded {_entries.Count} entries from {_filePath}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[WhisperService] LoadAsync error: {ex.Message}");
+            }
         }
     }
 
+    // 📘 Модель одной записи шёпота
     public class WhisperEntry
     {
         public DateTime Time { get; set; }

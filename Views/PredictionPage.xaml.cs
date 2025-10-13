@@ -34,13 +34,14 @@ public partial class PredictionPage : ContentPage
     {
         try
         {
-            // 1️⃣ Загружаем сценарий при необходимости
+            // 1️⃣ Загружаем сценарий если ещё не подгружен
             if (!_storyService.IsLoaded)
             {
                 Console.WriteLine("[PredictionPage] StoryService not loaded — loading JSON...");
                 await _storyService.LoadAsync();
             }
 
+            // Получаем текущий эпизод и необходимые сервисы
             var episode = _storyService.GetCurrentEpisode();
             var predictor = App.Services.GetService<PredictionService>();
             var historySvc = App.Services.GetService<HistoryService>();
@@ -55,39 +56,47 @@ public partial class PredictionPage : ContentPage
             // 2️⃣ Находим сцену выбранного героя
             Scene? scene = episode?.Scenes?
                 .FirstOrDefault(s =>
-                    s.HeroId.Equals(Character.HeroId, StringComparison.OrdinalIgnoreCase));
+                    s.HeroId.Equals(Character.HeroId, StringComparison.OrdinalIgnoreCase))
+                ?? episode?.Scenes?.FirstOrDefault();
 
-            // 3️⃣ Формируем запрос для ИИ
-            var prompt = scene != null
-                ? $"{Character.Name}. Эмоция: {scene.Emotion}. {scene.Text}"
-                : $"{Character.Name} даёт краткое мистическое предсказание пользователю.";
-
-            Console.WriteLine($"[DEBUG] Prompt >>> {prompt}");
-
-            // 4️⃣ Запрашиваем ответ ИИ
-            string aiText = await predictor.GetPredictionAsync(prompt) ?? "…тишина звёзд…";
-
-            // 🔹 обязательно выводим текст на экран
-            AiLabel.Text = aiText.Trim();
-
-            // 5️⃣ Сохраняем сюжетную сцену в шёпоты
-            if (scene != null)
+            if (scene == null)
             {
-                var sceneText = $"{scene.HeroId}: {scene.Text}";
-                await whispers.AddImprovisationAsync(scene.HeroId, scene.Emotion, sceneText);
+                AiLabel.Text = "Долина молчит. Нет сцен в этом эпизоде.";
+                SceneLabel.Text = string.Empty;
+                return;
             }
 
-            // 6️⃣ Сохраняем импровизацию ИИ того же персонажа
-            if (!string.IsNullOrWhiteSpace(aiText))
-                await whispers.AddImprovisationAsync(Character.Name, scene?.Emotion ?? "mystery", aiText);
+            // 3️⃣ Формируем промпт и запрашиваем ответ у ИИ
+            var prompt = $"{Character.Name}. Эмоция: {scene.Emotion}. {scene.Text}";
+            Console.WriteLine($"[DEBUG] Prompt >>> {prompt}");
 
-            // 7️⃣ Формируем реплики других героев
+            string aiText = await predictor.GetPredictionAsync(prompt) ?? "…тишина звёзд…";
+            AiLabel.Text = aiText.Trim();
+
+            // 4️⃣ Сохраняем ВСЕ сцены эпизода в шёпоты
+            if (episode?.Scenes != null && episode.Scenes.Count > 0)
+            {
+                foreach (var s in episode.Scenes)
+                {
+                    var record = $"{s.HeroId}: {s.Text}";
+                    await whispers.AddImprovisationAsync(s.HeroId, s.Emotion, record);
+                }
+                Console.WriteLine($"[PredictionPage] Added {episode.Scenes.Count} scenes of episode {episode.Id} to whispers.");
+            }
+            else
+            {
+                await whispers.AddImprovisationAsync(Character.HeroId, scene.Emotion, scene.Text);
+            }
+
+            // ⚠️ Личное предсказание ИИ оставляем только в истории, не пишем в шёпоты
+
+            // 5️⃣ Формируем текст реплик для отображения на экране
             var reactions = new StringBuilder();
             if (episode?.Scenes != null && episode.Scenes.Count > 0)
             {
                 foreach (var s in episode.Scenes)
                 {
-                    var prefix = s.HeroId.Equals(Character.HeroId, StringComparison.OrdinalIgnoreCase) ? "★" : "―";
+                    var prefix = s.HeroId.Equals(Character.HeroId, StringComparison.OrdinalIgnoreCase) ? "★" : "—";
                     reactions.AppendLine($"{prefix} {s.HeroId}: {s.Text}");
                 }
             }
@@ -98,18 +107,17 @@ public partial class PredictionPage : ContentPage
 
             SceneLabel.Text = reactions.ToString();
 
-            // 8️⃣ Анимация появления блоков
+            // 6️⃣ Плавная анимация появления блоков
             AiFrame.Opacity = 0;
             SceneFrame.Opacity = 0;
             await AiFrame.FadeTo(1, 400, Easing.CubicIn);
             await SceneFrame.FadeTo(1, 600, Easing.CubicIn);
 
-            // 9️⃣ Добавляем запись в историю
+            // 7️⃣ Сохраняем личное предсказание в историю пользователя
             await historySvc.AddAsync(Character.Name, AiLabel.Text);
+            Console.WriteLine($"[PredictionPage] Saved personal prediction for {Character.Name}");
 
-            Console.WriteLine($"[PredictionPage] Saved history + whispers for {Character.Name}");
-
-            // 🔸 следующий эпизод
+            // 8️⃣ Переходим к следующему эпизоду
             _storyService.GetNextEpisode();
         }
         catch (Exception ex)
