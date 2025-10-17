@@ -2,26 +2,35 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MysticWalley.Views.HistoryPage"
+             
+             xmlns:viewmodels="clr-namespace:MysticWalley.ViewModels"
+             xmlns:services="clr-namespace:MysticWalley.Services"
+             x:DataType="viewmodels:HistoryViewModel"
+             
              Title="История предсказаний">
 
     <Grid RowDefinitions="Auto,*">
 
-        <!-- Кнопка очистки -->
+        <!-- ======================================================= -->
+        <!-- ИЗМЕНЕНИЕ №1: Кнопка теперь использует Command, а не Clicked -->
+        <!-- ======================================================= -->
         <Button Text="🗑 Очистить историю"
                 BackgroundColor="DarkRed"
                 TextColor="White"
-                Clicked="OnClearHistoryClicked"
+                Command="{Binding ClearHistoryCommand}"
                 Margin="10"
                 HorizontalOptions="Center"
                 Grid.Row="0"/>
 
-        <!-- Список сохранённых предсказаний -->
-        <CollectionView x:Name="HistoryView"
+        <!-- =========================================================== -->
+        <!-- ИЗМЕНЕНИЕ №2: CollectionView привязан к свойству в ViewModel -->
+        <!-- =========================================================== -->
+        <CollectionView ItemsSource="{Binding HistoryItems}"
                         Margin="10"
                         Grid.Row="1">
 
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="services:HistoryItem">
                     <Frame BorderColor="Purple"
                            Margin="4"
                            Padding="8"

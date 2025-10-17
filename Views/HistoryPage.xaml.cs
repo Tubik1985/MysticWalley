@@ -1,41 +1,32 @@
-﻿using MysticWalley.Services;
+﻿// Файл: Views/HistoryPage.xaml.cs
+
+using MysticWalley.ViewModels; // Подключаем нашу ViewModel
 
 namespace MysticWalley.Views;
 
 public partial class HistoryPage : ContentPage
 {
-    private readonly HistoryService _historyService;
-
-    public HistoryPage(HistoryService historyService)
+    // 1. Получаем в конструктор уже готовую ViewModel.
+    //    DI-контейнер создаст её для нас вместе с HistoryService внутри.
+    public HistoryPage(HistoryViewModel viewModel)
     {
         InitializeComponent();
-        _historyService = historyService;
+
+        // 2. Устанавливаем ViewModel как контекст данных для этой страницы.
+        //    Теперь весь XAML будет "видеть" публичные свойства и команды из viewModel.
+        BindingContext = viewModel;
     }
 
-    // 🔹 Загружаем записи при каждом появлении страницы
-    protected override async void OnAppearing()
+    // 3. Вызываем команду загрузки истории при появлении страницы.
+    protected override void OnAppearing()
     {
         base.OnAppearing();
 
-        var items = await _historyService.GetAllAsync(); // ← верное поле и асинхронный метод
-        HistoryView.ItemsSource = items;
-    }
-
-    // 🔹 Очистка истории по кнопке
-    private async void OnClearHistoryClicked(object sender, EventArgs e)
-    {
-        bool confirm = await DisplayAlert(
-            "Подтверждение",
-            "Очистить всю историю предсказаний?",
-            "Да", "Отмена");
-
-        if (!confirm)
-            return;
-
-        await _historyService.ClearHistoryAsync();
-
-        // после очистки читаем список заново — теперь он будет пуст
-        var items = await _historyService.GetAllAsync();
-        HistoryView.ItemsSource = items;
+        // Мы могли бы сделать это и через XAML (с помощью Behaviors),
+        // но для простоты начнем с вызова команды из Code-behind.
+        if (BindingContext is HistoryViewModel vm && vm.LoadHistoryCommand.CanExecute(null))
+        {
+            vm.LoadHistoryCommand.Execute(null);
+        }
     }
 }

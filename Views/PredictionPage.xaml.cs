@@ -1,6 +1,8 @@
-﻿using System.Text;
+﻿// Файл: Views/PredictionPage.xaml.cs
+
 using MysticWalley.Models;
 using MysticWalley.Services;
+using System.Text;
 
 namespace MysticWalley.Views;
 
@@ -8,124 +10,131 @@ namespace MysticWalley.Views;
 public partial class PredictionPage : ContentPage
 {
     private readonly StoryService _storyService;
+    private readonly PredictionService _predictionService;
+    private readonly HistoryService _historyService;
+    private readonly WhisperService _whisperService;
+
     public Character Character { get; set; }
 
-    public PredictionPage(StoryService storyService)
+    public PredictionPage(
+        StoryService storyService,
+        PredictionService predictionService,
+        HistoryService historyService,
+        WhisperService whisperService)
     {
         InitializeComponent();
+
         _storyService = storyService;
+        _predictionService = predictionService;
+        _historyService = historyService;
+        _whisperService = whisperService;
     }
 
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
         base.OnAppearing();
 
-        if (Character == null) return;
+        if (Character == null)
+        {
+            // Если персонаж не передан, показываем ошибку и ничего не делаем
+            CharacterLabel.Text = "Ошибка";
+            CharacterDescription.Text = "Персонаж не найден. Вернитесь на главную.";
+            return;
+        }
 
+        // Заполняем информацию о персонаже
         CharacterLabel.Text = Character.Name;
         CharacterDescription.Text = Character.Description;
         CharacterIcon.Source = Character.Portrait ?? "placeholder.png";
         BackgroundImage.Source = Character.Background ?? "default_bg.png";
 
-        await BackgroundImage.FadeTo(0.6, 800, Easing.CubicInOut);
+        // Сбрасываем предыдущие результаты
+        AiLabel.Text = "";
+        SceneLabel.Text = "";
+        AiFrame.Opacity = 0;
+        SceneFrame.Opacity = 0;
     }
 
     private async void OnPredictClicked(object sender, EventArgs e)
     {
+        // Блокируем кнопку, чтобы избежать двойных нажатий
+        PredictButton.IsEnabled = false;
+
+        // --- ЭТАП 1: ЛИЧНОЕ ПРЕДСКАЗАНИЕ (НЕ ЗАВИСИТ ОТ СЦЕНАРИЯ) ---
         try
         {
-            // 1️⃣ Загружаем сценарий если ещё не подгружен
-            if (!_storyService.IsLoaded)
-            {
-                Console.WriteLine("[PredictionPage] StoryService not loaded — loading JSON...");
-                await _storyService.LoadAsync();
-            }
+            // Формируем простой, но контекстный промпт
+            var promptForAI = $"Ты {Character.Name}, персонаж из мира MysticWalley. " +
+                              $"К тебе пришел путник за советом. " +
+                              $"Дай ему короткое, мистическое и личное предсказание, " +
+                              $"исходя из твоего характера: {Character.Description}.";
 
-            // Получаем текущий эпизод и необходимые сервисы
-            var episode = _storyService.GetCurrentEpisode();
-            var predictor = App.Services.GetService<PredictionService>();
-            var historySvc = App.Services.GetService<HistoryService>();
-            var whispers = App.Services.GetService<WhisperService>();
-
-            if (predictor == null || historySvc == null || whispers == null)
-            {
-                Console.WriteLine("[PredictionPage] One or more services not resolved.");
-                return;
-            }
-
-            // 2️⃣ Находим сцену выбранного героя
-            Scene? scene = episode?.Scenes?
-                .FirstOrDefault(s =>
-                    s.HeroId.Equals(Character.HeroId, StringComparison.OrdinalIgnoreCase))
-                ?? episode?.Scenes?.FirstOrDefault();
-
-            if (scene == null)
-            {
-                AiLabel.Text = "Долина молчит. Нет сцен в этом эпизоде.";
-                SceneLabel.Text = string.Empty;
-                return;
-            }
-
-            // 3️⃣ Формируем промпт и запрашиваем ответ у ИИ
-            var prompt = $"{Character.Name}. Эмоция: {scene.Emotion}. {scene.Text}";
-            Console.WriteLine($"[DEBUG] Prompt >>> {prompt}");
-
-            string aiText = await predictor.GetPredictionAsync(prompt) ?? "…тишина звёзд…";
+            string aiText = await _predictionService.GetPredictionAsync(promptForAI) ?? "…тишина звёзд…";
             AiLabel.Text = aiText.Trim();
 
-            // 4️⃣ Сохраняем ВСЕ сцены эпизода в шёпоты
-            if (episode?.Scenes != null && episode.Scenes.Count > 0)
-            {
-                foreach (var s in episode.Scenes)
-                {
-                    var record = $"{s.HeroId}: {s.Text}";
-                    await whispers.AddImprovisationAsync(s.HeroId, s.Emotion, record);
-                }
-                Console.WriteLine($"[PredictionPage] Added {episode.Scenes.Count} scenes of episode {episode.Id} to whispers.");
-            }
-            else
-            {
-                await whispers.AddImprovisationAsync(Character.HeroId, scene.Emotion, scene.Text);
-            }
-
-            // ⚠️ Личное предсказание ИИ оставляем только в истории, не пишем в шёпоты
-
-            // 5️⃣ Формируем текст реплик для отображения на экране
-            var reactions = new StringBuilder();
-            if (episode?.Scenes != null && episode.Scenes.Count > 0)
-            {
-                foreach (var s in episode.Scenes)
-                {
-                    var prefix = s.HeroId.Equals(Character.HeroId, StringComparison.OrdinalIgnoreCase) ? "★" : "—";
-                    reactions.AppendLine($"{prefix} {s.HeroId}: {s.Text}");
-                }
-            }
-            else
-            {
-                reactions.AppendLine("Тишина долины. Нет сцен в этом эпизоде.");
-            }
-
-            SceneLabel.Text = reactions.ToString();
-
-            // 6️⃣ Плавная анимация появления блоков
-            AiFrame.Opacity = 0;
-            SceneFrame.Opacity = 0;
-            await AiFrame.FadeTo(1, 400, Easing.CubicIn);
-            await SceneFrame.FadeTo(1, 600, Easing.CubicIn);
-
-            // 7️⃣ Сохраняем личное предсказание в историю пользователя
-            await historySvc.AddAsync(Character.Name, AiLabel.Text);
+            // Сразу сохраняем в личную историю
+            await _historyService.AddAsync(Character.Name, aiText);
             Console.WriteLine($"[PredictionPage] Saved personal prediction for {Character.Name}");
 
-            // 8️⃣ Переходим к следующему эпизоду
-            _storyService.GetNextEpisode();
+            // Плавно показываем результат
+            await AiFrame.FadeTo(1, 400, Easing.CubicIn);
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"[PredictionPage] ERROR: {ex.Message}");
-            AiLabel.Text = "Ошибка загрузки предсказания.";
-            SceneLabel.Text = string.Empty;
-            AiFrame.Opacity = SceneFrame.Opacity = 1;
+            Console.WriteLine($"[PredictionPage] ERROR during AI prediction: {ex.Message}");
+            AiLabel.Text = "Духи сегодня не в настроении говорить...";
+            await AiFrame.FadeTo(1, 400, Easing.CubicIn);
+        }
+
+        // --- ЭТАП 2: ФОНОВЫЙ СЦЕНАРИЙ И ШЁПОТЫ (ОТДЕЛЬНАЯ ЛОГИКА) ---
+        try
+        {
+            if (!_storyService.IsLoaded)
+            {
+                await _storyService.LoadAsync();
+            }
+
+            var episode = _storyService.GetCurrentEpisode();
+            if (episode?.Scenes != null && episode.Scenes.Any())
+            {
+                var reactions = new StringBuilder();
+                reactions.AppendLine("Тем временем в долине:");
+
+                foreach (var scene in episode.Scenes)
+                {
+                    // Сохраняем все сцены в шёпоты
+                    await _whisperService.AddImprovisationAsync(scene.HeroId, scene.Emotion, scene.Text);
+
+                    // Формируем текст для отображения
+                    reactions.AppendLine($"— {scene.HeroId}: {scene.Text}");
+                }
+
+                SceneLabel.Text = reactions.ToString();
+                Console.WriteLine($"[PredictionPage] Added {episode.Scenes.Count} scenes to whispers.");
+
+                // Плавно показываем блок со сценами
+                await SceneFrame.FadeTo(1, 600, Easing.CubicIn);
+
+                // Переходим к следующему эпизоду только если этот был успешно обработан
+                _storyService.GetNextEpisode();
+            }
+            else
+            {
+                SceneLabel.Text = "В долине всё спокойно...";
+                await SceneFrame.FadeTo(1, 600, Easing.CubicIn);
+            }
+        }
+        catch (Exception ex)
+        {
+            // ВАЖНО: Ошибка здесь больше не ломает основную функцию предсказания!
+            Console.WriteLine($"[PredictionPage] ERROR during scene processing: {ex.Message}");
+            SceneLabel.Text = "Эхо долины затихло из-за ошибки...";
+            await SceneFrame.FadeTo(1, 600, Easing.CubicIn);
+        }
+        finally
+        {
+            // Возвращаем кнопку в рабочее состояние в любом случае
+            PredictButton.IsEnabled = true;
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using MysticWalley.Services;
 using MysticWalley.Views;
-
+using MysticWalley.ViewModels;
 namespace MysticWalley;
 
 public static class MauiProgram
@@ -24,7 +24,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<CharacterService>();
         builder.Services.AddSingleton<HistoryService>();
         builder.Services.AddSingleton<WhisperService>();
-        // >>> добавляем StoryService <<<
+        builder.Services.AddTransient<HistoryViewModel>();
         builder.Services.AddSingleton<StoryService>();
        
         // ===== Страницы ===================================================
