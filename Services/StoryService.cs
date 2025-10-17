@@ -10,24 +10,43 @@ namespace MysticWalley.Services
 
         public bool IsLoaded => _story != null && _story.Episodes?.Any() == true;
 
-        // 💫 Загружаем сценарий из Data/StoryConfig.json (MauiAsset)
+        // =========================================================================
+        // ИСПРАВЛЕНИЕ (План Б): Загружаем файл напрямую как Content, а не MauiAsset
+        // =========================================================================
         public async Task LoadAsync()
         {
             try
             {
-                using var stream = await FileSystem.OpenAppPackageFileAsync("Data/StoryConfig.json");
-                using var reader = new StreamReader(stream);
-                var json = await reader.ReadToEndAsync();
+                // Формируем прямой путь к файлу в директории, куда он был скопирован при сборке.
+                // AppContext.BaseDirectory указывает на папку типа /bin/Debug/net8.0-windows.../
+                var filePath = Path.Combine(AppContext.BaseDirectory, "Resources", "Data", "StoryConfig.json");
+
+                // Добавим проверку на существование файла для более ясной диагностики.
+                if (!File.Exists(filePath))
+                {
+                    var errorMessage = $"[StoryService] CRITICAL ERROR: Файл сценария не найден по прямому пути: {filePath}";
+                    Console.WriteLine(errorMessage);
+                    // Выбрасываем исключение, чтобы не продолжать работу с пустыми данными.
+                    throw new FileNotFoundException(errorMessage, filePath);
+                }
+
+                Console.WriteLine($"[StoryService] Читаем файл сценария из: {filePath}");
+
+                // Читаем весь текстовый контент файла асинхронно.
+                var json = await File.ReadAllTextAsync(filePath);
 
                 var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
                 _story = JsonSerializer.Deserialize<StoryRoot>(json, options);
 
                 _currentIndex = 0;
-                Console.WriteLine($"[StoryService] JSON loaded: {_story?.Title} ({_story?.Episodes?.Count ?? 0} episodes)");
+                Console.WriteLine($"[StoryService] УСПЕХ: Сценарий '{_story?.Title}' загружен ({_story?.Episodes?.Count ?? 0} эпизодов).");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"[StoryService] Load error: {ex.Message}");
+                // Логируем ошибку с указанием её типа для лучшего понимания.
+                Console.WriteLine($"[StoryService] ОШИБКА ЗАГРУЗКИ: {ex.GetType().Name} - {ex.Message}");
+                // После ошибки сбрасываем состояние, чтобы IsLoaded был false.
+                _story = null;
             }
         }
 
@@ -36,7 +55,7 @@ namespace MysticWalley.Services
 
         public Episode? GetNextEpisode()
         {
-            if (_story?.Episodes == null || _story.Episodes.Count == 0)
+            if (!IsLoaded || _story?.Episodes == null || _story.Episodes.Count == 0)
                 return null;
 
             _currentIndex = (_currentIndex + 1) % _story.Episodes.Count;

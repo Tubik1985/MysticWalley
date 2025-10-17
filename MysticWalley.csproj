@@ -49,6 +49,18 @@
 		<MauiAsset Include="Resources\Data\**" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <MauiAsset Remove="Resources\Data\StoryConfig.json" />
+	  <MauiAsset Remove="Resources\Data\WhisperService.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Resources\Data\StoryConfig.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="Resources\Data\WhisperService.json" />
+	</ItemGroup>
+
 	<!--
 		Секции <None Remove ...> и старая <MauiAsset ...> с CopyToOutputDirectory
 		полностью удалены, так как они были причиной ошибки.
@@ -74,11 +86,6 @@
 	  <Compile Update="Views\TestTokenPage.xaml.cs">
 	    <DependentUpon>TestTokenPage.xaml</DependentUpon>
 	  </Compile>
-	</ItemGroup>
-	<ItemGroup>
-	  <MauiAsset Update="Resources\Data\StoryConfig.json">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </MauiAsset>
 	</ItemGroup>
 
 	<ItemGroup>
