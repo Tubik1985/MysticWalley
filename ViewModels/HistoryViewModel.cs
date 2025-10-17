@@ -1,7 +1,8 @@
 ﻿// Файл: ViewModels/HistoryViewModel.cs
+
 using MysticWalley.Services;
-using System.Collections.ObjectModel; // <-- Важно!
-using System.Windows.Input;         // <-- Важно!
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace MysticWalley.ViewModels
 {
@@ -9,13 +10,18 @@ namespace MysticWalley.ViewModels
     {
         private readonly HistoryService _historyService;
 
-        // 1. Вместо List<T> используем ObservableCollection<T>.
-        //    Она автоматически уведомляет UI об изменениях (добавлении/удалении элементов).
-        public ObservableCollection<HistoryItem> HistoryItems { get; private set; }
-
-        // 2. Создаем "команды" - это обертка над нашими методами.
-        //    К ним мы будем привязываться в XAML.
+        public ObservableCollection<HistoryItem> HistoryItems { get; }
         public ICommand LoadHistoryCommand { get; }
+
+        // =========================================================================
+        // ИСПРАВЛЕНИЕ: Команда теперь принимает делегат для подтверждения
+        // =========================================================================
+
+        /// <summary>
+        /// Команда для очистки истории.
+        /// Ожидает в качестве параметра Func<Task<bool>> - функцию, 
+        /// которая покажет диалог подтверждения и вернет true или false.
+        /// </summary>
         public ICommand ClearHistoryCommand { get; }
 
         public HistoryViewModel(HistoryService historyService)
@@ -23,12 +29,27 @@ namespace MysticWalley.ViewModels
             _historyService = historyService;
             HistoryItems = new ObservableCollection<HistoryItem>();
 
-            // 3. Привязываем команды к методам.
             LoadHistoryCommand = new Command(async () => await LoadHistoryAsync());
-            ClearHistoryCommand = new Command(async () => await ClearHistoryAsync());
+
+            // Команда теперь типизирована как Command<T>, где T - это Func<Task<bool>>.
+            // Это позволяет нам передать функцию подтверждения из View.
+            ClearHistoryCommand = new Command<Func<Task<bool>>>(async (askConfirmationFunc) =>
+            {
+                // Если по какой-то причине функция не была передана,
+                // мы просто не будем выполнять очистку, чтобы избежать случайных удалений.
+                if (askConfirmationFunc == null) return;
+
+                // Вызываем сам диалог, который реализован во View
+                bool userConfirmed = await askConfirmationFunc();
+
+                // Действуем только если пользователь нажал "Да"
+                if (userConfirmed)
+                {
+                    await ClearHistoryAsync();
+                }
+            });
         }
 
-        // 4. Логика загрузки, переехавшая из .xaml.cs
         private async Task LoadHistoryAsync()
         {
             HistoryItems.Clear();
@@ -40,14 +61,13 @@ namespace MysticWalley.ViewModels
             Console.WriteLine($"[HistoryViewModel] Loaded {HistoryItems.Count} items.");
         }
 
-        // 5. Логика очистки, переехавшая из .xaml.cs
+        // Метод очистки теперь стал приватным и более простым.
+        // Вся логика подтверждения вынесена в саму команду.
         private async Task ClearHistoryAsync()
         {
-            // Здесь можно добавить диалог подтверждения, но для ViewModel лучше делать это
-            // на уровне View. Пока оставим так для простоты.
             await _historyService.ClearHistoryAsync();
-            HistoryItems.Clear(); // Просто очищаем коллекцию, UI обновится сам.
-            Console.WriteLine("[HistoryViewModel] History cleared.");
+            HistoryItems.Clear();
+            Console.WriteLine("[HistoryViewModel] History cleared by user confirmation.");
         }
     }
 }

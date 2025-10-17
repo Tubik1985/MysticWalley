@@ -11,20 +11,19 @@
 
     <Grid RowDefinitions="Auto,*">
 
-        <!-- ======================================================= -->
-        <!-- ИЗМЕНЕНИЕ №1: Кнопка теперь использует Command, а не Clicked -->
-        <!-- ======================================================= -->
-        <Button Text="🗑 Очистить историю"
+        <!-- ============================================================= -->
+        <!-- ИЗМЕНЕНИЕ: Убрали Command, добавили x:Name и Clicked-событие -->
+        <!-- ============================================================= -->
+        <Button x:Name="ClearHistoryButton"
+                Text="🗑 Очистить историю"
                 BackgroundColor="DarkRed"
                 TextColor="White"
-                Command="{Binding ClearHistoryCommand}"
+                Clicked="ClearHistoryButton_Clicked"
                 Margin="10"
                 HorizontalOptions="Center"
                 Grid.Row="0"/>
 
-        <!-- =========================================================== -->
-        <!-- ИЗМЕНЕНИЕ №2: CollectionView привязан к свойству в ViewModel -->
-        <!-- =========================================================== -->
+        <!-- CollectionView остается без изменений, он уже правильно привязан -->
         <CollectionView ItemsSource="{Binding HistoryItems}"
                         Margin="10"
                         Grid.Row="1">
@@ -35,28 +34,20 @@
                            Margin="4"
                            Padding="8"
                            CornerRadius="8">
-
                         <VerticalStackLayout>
-                            <!-- Имя героя -->
                             <Label Text="{Binding Hero}"
                                    FontAttributes="Bold"
                                    TextColor="Purple" />
-
-                            <!-- Текст предсказания -->
                             <Label Text="{Binding Text}"
                                    TextColor="Black"
                                    LineBreakMode="WordWrap"/>
-
-                            <!-- Время записи -->
                             <Label Text="{Binding Time, StringFormat='{0:G}'}"
                                    FontSize="10"
                                    TextColor="Gray" />
                         </VerticalStackLayout>
-
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-
         </CollectionView>
     </Grid>
 </ContentPage>
