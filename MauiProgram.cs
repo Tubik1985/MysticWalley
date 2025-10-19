@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using MysticWalley.Services;
 using MysticWalley.ViewModels;
 using MysticWalley.Views;
@@ -20,6 +21,7 @@ public static class MauiProgram
 
 #if DEBUG
         builder.Logging.AddDebug();
+        builder.Configuration.AddUserSecrets<App>();
 #endif
 
         // ===== РЕГИСТРАЦИЯ ЗАВИСИМОСТЕЙ (Dependency Injection) ==================
