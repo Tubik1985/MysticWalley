@@ -1,6 +1,6 @@
 # Mystic Valley 🔮
 
-![Mystic Valley Banner](https://via.placeholder.com/1280x640/1a0033/AE81FF?text=Mystic+Valley)
+![Mystic Valley Banner](https://via.placeholder.com/1280x640/1a0033/AE81FF?text=Mystic+Walley)
 
 > *«Долина должна дышать: шёпоты говорят, истории живут, персонажи помнят…»*
 
@@ -35,10 +35,10 @@
 
 Проект находится в активной фазе разработки. Текущая стабильная версия включает в себя отлаженный основной игровой цикл.
 
-Следите за прогрессом и релизами в разделе [Releases](https://github.com/Tubik1985/MysticValley/releases)!
+Следите за прогрессом и релизами в разделе [Releases](https://github.com/Tubik1985/MysticWalley/releases)!
 
 ---
 
 ## 🤝 Участие
 
-На данном этапе проект является портфолио-разработкой. Идеи и предложения приветствуются в разделе [Issues](https://github.com/Tubik1985/MysticValley/issues).
+На данном этапе проект является портфолио-разработкой. Идеи и предложения приветствуются в разделе [Issues](https://github.com/Tubik1985/MysticWalley/issues).
