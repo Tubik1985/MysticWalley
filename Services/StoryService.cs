@@ -1,65 +1,90 @@
-﻿using System.Text.Json;
+﻿// Файл: Services/StoryService.cs
 using MysticWalley.Models;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace MysticWalley.Services
 {
     public class StoryService
     {
+        // --- ИЗМЕНЕНИЕ №1: Добавляем зависимость от GameStateService ---
+        private readonly GameStateService _gameStateService;
+
         private StoryRoot? _story;
-        private int _currentIndex = 0;
+        // --- ИЗМЕНЕНИЕ №2: УДАЛЯЕМ внутреннее состояние _currentIndex ---
+        // private int _currentIndex = 0; // Больше не нужно!
 
         public bool IsLoaded => _story != null && _story.Episodes?.Any() == true;
 
-        // =========================================================================
-        // ИСПРАВЛЕНИЕ (План Б): Загружаем файл напрямую как Content, а не MauiAsset
-        // =========================================================================
+        // Внедряем GameStateService через конструктор
+        public StoryService(GameStateService gameStateService)
+        {
+            _gameStateService = gameStateService;
+        }
+
+        // Метод загрузки сценария остается почти без изменений
         public async Task LoadAsync()
         {
+            if (IsLoaded) return; // Не загружаем повторно, если уже загружен
+
             try
             {
-                // Формируем прямой путь к файлу в директории, куда он был скопирован при сборке.
-                // AppContext.BaseDirectory указывает на папку типа /bin/Debug/net8.0-windows.../
+                // Используем наш "План Б" для загрузки файла
                 var filePath = Path.Combine(AppContext.BaseDirectory, "Resources", "Data", "StoryConfig.json");
-
-                // Добавим проверку на существование файла для более ясной диагностики.
                 if (!File.Exists(filePath))
                 {
-                    var errorMessage = $"[StoryService] CRITICAL ERROR: Файл сценария не найден по прямому пути: {filePath}";
-                    Console.WriteLine(errorMessage);
-                    // Выбрасываем исключение, чтобы не продолжать работу с пустыми данными.
-                    throw new FileNotFoundException(errorMessage, filePath);
+                    Console.WriteLine($"[StoryService] CRITICAL ERROR: Файл сценария не найден: {filePath}");
+                    return;
                 }
 
-                Console.WriteLine($"[StoryService] Читаем файл сценария из: {filePath}");
-
-                // Читаем весь текстовый контент файла асинхронно.
                 var json = await File.ReadAllTextAsync(filePath);
-
                 var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
                 _story = JsonSerializer.Deserialize<StoryRoot>(json, options);
 
-                _currentIndex = 0;
                 Console.WriteLine($"[StoryService] УСПЕХ: Сценарий '{_story?.Title}' загружен ({_story?.Episodes?.Count ?? 0} эпизодов).");
             }
             catch (Exception ex)
             {
-                // Логируем ошибку с указанием её типа для лучшего понимания.
-                Console.WriteLine($"[StoryService] ОШИБКА ЗАГРУЗКИ: {ex.GetType().Name} - {ex.Message}");
-                // После ошибки сбрасываем состояние, чтобы IsLoaded был false.
-                _story = null;
+                Console.WriteLine($"[StoryService] ОШИБКА ЗАГРУЗКИ СЦЕНАРИЯ: {ex.Message}");
             }
         }
 
-        public Episode? GetCurrentEpisode() =>
-            _story?.Episodes?.ElementAtOrDefault(_currentIndex);
-
-        public Episode? GetNextEpisode()
+        /// <summary>
+        /// Возвращает текущий эпизод, основываясь на ГЛОБАЛЬНОМ состоянии игры.
+        /// </summary>
+        public Episode? GetCurrentEpisode()
         {
-            if (!IsLoaded || _story?.Episodes == null || _story.Episodes.Count == 0)
-                return null;
+            if (!IsLoaded) return null;
 
-            _currentIndex = (_currentIndex + 1) % _story.Episodes.Count;
-            return _story.Episodes[_currentIndex];
+            // --- ИЗМЕНЕНИЕ №3: Получаем индекс из GameStateService ---
+            var state = _gameStateService.GetCurrentState();
+            int currentIndex = state.CurrentEpisodeIndex;
+
+            return _story?.Episodes?.ElementAtOrDefault(currentIndex);
+        }
+
+        /// <summary>
+        /// Готовит мир к следующему эпизоду.
+        /// ВАЖНО: Этот метод больше не возвращает эпизод, он только обновляет состояние.
+        /// </summary>
+        public async Task AdvanceToNextEpisodeAsync()
+        {
+            if (!IsLoaded || _story?.Episodes == null || !_story.Episodes.Any())
+                return;
+
+            var state = _gameStateService.GetCurrentState();
+            int currentIndex = state.CurrentEpisodeIndex;
+
+            // --- ИЗМЕНЕНИЕ №4: Увеличиваем индекс и сохраняем его через GameStateService ---
+            int nextIndex = (currentIndex + 1) % _story.Episodes.Count;
+
+            await _gameStateService.UpdateAndSaveStateAsync(s =>
+            {
+                s.CurrentEpisodeIndex = nextIndex;
+                // В будущем здесь же будет обновляться настроение персонажей
+            });
+
+            Console.WriteLine($"[StoryService] Игровой мир переведен на следующий эпизод, индекс: {nextIndex}");
         }
     }
 }

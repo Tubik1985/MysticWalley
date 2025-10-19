@@ -2,81 +2,94 @@
 
 using MysticWalley.Models;
 using MysticWalley.Services;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MysticWalley.Views;
 
-[QueryProperty(nameof(Character), "Character")]
+[QueryProperty(nameof(CharacterId), "characterId")]
 public partial class PredictionPage : ContentPage
 {
+    private readonly CharacterService _characterService;
+    private readonly GameStateService _gameStateService;
     private readonly StoryService _storyService;
     private readonly PredictionService _predictionService;
     private readonly HistoryService _historyService;
     private readonly WhisperService _whisperService;
 
-    public Character Character { get; set; }
+    public string CharacterId { get; set; }
+    private Character? _character;
 
     public PredictionPage(
+        CharacterService characterService,
+        GameStateService gameStateService,
         StoryService storyService,
         PredictionService predictionService,
         HistoryService historyService,
         WhisperService whisperService)
     {
         InitializeComponent();
-
+        _characterService = characterService;
+        _gameStateService = gameStateService;
         _storyService = storyService;
         _predictionService = predictionService;
         _historyService = historyService;
         _whisperService = whisperService;
     }
 
-    protected override void OnAppearing()
+    protected override async void OnAppearing()
     {
         base.OnAppearing();
+        Console.WriteLine("\n--- [PredictionPage] OnAppearing START ---");
+        if (string.IsNullOrEmpty(CharacterId)) { ShowError("Ошибка", "CharacterId не был передан."); return; }
+        _character = _characterService.GetCharacterById(CharacterId);
+        if (_character == null) { ShowError("Ошибка", $"Персонаж с ID {CharacterId} не найден."); return; }
 
-        if (Character == null)
+        UpdateCharacterUI();
+
+        if (!_storyService.IsLoaded)
         {
-            // Если персонаж не передан, показываем ошибку и ничего не делаем
-            CharacterLabel.Text = "Ошибка";
-            CharacterDescription.Text = "Персонаж не найден. Вернитесь на главную.";
-            return;
+            await _storyService.LoadAsync();
         }
+        UpdateDebugInfo();
+        Console.WriteLine("--- [PredictionPage] OnAppearing END (SUCCESS) ---\n");
+    }
 
-        // Заполняем информацию о персонаже
-        CharacterLabel.Text = Character.Name;
-        CharacterDescription.Text = Character.Description;
-        CharacterIcon.Source = Character.Portrait ?? "placeholder.png";
-        BackgroundImage.Source = Character.Background ?? "default_bg.png";
+    private void UpdateCharacterUI()
+    {
+        if (_character == null) return;
+        CharacterLabel.Text = _character.Name;
+        CharacterDescription.Text = _character.Description;
+        CharacterIcon.Source = _character.Portrait;
+        BackgroundImage.Source = _character.Background;
+        BackgroundImage.FadeTo(0.6, 800, Easing.CubicInOut);
+        AiLabel.Text = ""; SceneLabel.Text = "";
+        AiFrame.Opacity = 0; SceneFrame.Opacity = 0;
+        PredictButton.IsEnabled = true;
+    }
 
-        // Сбрасываем предыдущие результаты
-        AiLabel.Text = "";
-        SceneLabel.Text = "";
-        AiFrame.Opacity = 0;
-        SceneFrame.Opacity = 0;
+    private void UpdateDebugInfo()
+    {
+        var episode = _storyService.GetCurrentEpisode();
+        DebugEpisodeLabel.Text = $"Текущий эпизод: {episode?.Id ?? "СЦЕНАРИЙ ЗАВЕРШЕН"}";
+        var currentState = _gameStateService.GetCurrentState();
+        var moodsText = string.Join(", ", currentState.CharacterMoods.Select(kv => $"{kv.Key}: {kv.Value}"));
+        DebugMoodsLabel.Text = $"Настроения: {(string.IsNullOrEmpty(moodsText) ? "(пусто)" : moodsText)}";
     }
 
     private async void OnPredictClicked(object sender, EventArgs e)
     {
-        // Блокируем кнопку, чтобы избежать двойных нажатий
+        if (_character == null) return;
         PredictButton.IsEnabled = false;
 
-        // --- ЭТАП 1: ЛИЧНОЕ ПРЕДСКАЗАНИЕ (НЕ ЗАВИСИТ ОТ СЦЕНАРИЯ) ---
+        // --- ЭТАП 1: ЛИЧНОЕ ПРЕДСКАЗАНИЕ ---
         try
         {
-            // Формируем простой, но контекстный промпт
-            var promptForAI = $"Ты {Character.Name}, персонаж из мира MysticWalley. " +
-                              $"К тебе пришел путник за советом. " +
-                              $"Дай ему короткое, мистическое и личное предсказание, " +
-                              $"исходя из твоего характера: {Character.Description}.";
-
-            string aiText = await _predictionService.GetPredictionAsync(promptForAI) ?? "…тишина звёзд…";
+            var promptForAI = $"Ты {_character.Name}, персонаж мира MysticWalley. Твой характер: {_character.Description}. Дай путнику короткое, мистическое предсказание.";
+            string? aiText = await _predictionService.GetPredictionAsync(promptForAI) ?? "…тишина звёзд…";
             AiLabel.Text = aiText.Trim();
-
-            // Сразу сохраняем в личную историю
-            await _historyService.AddAsync(Character.Name, aiText);
-            Console.WriteLine($"[PredictionPage] Saved personal prediction for {Character.Name}");
-
-            // Плавно показываем результат
+            await _historyService.AddAsync(_character.Name, aiText);
             await AiFrame.FadeTo(1, 400, Easing.CubicIn);
         }
         catch (Exception ex)
@@ -86,37 +99,54 @@ public partial class PredictionPage : ContentPage
             await AiFrame.FadeTo(1, 400, Easing.CubicIn);
         }
 
-        // --- ЭТАП 2: ФОНОВЫЙ СЦЕНАРИЙ И ШЁПОТЫ (ОТДЕЛЬНАЯ ЛОГИКА) ---
+        // --- ЭТАП 2: ПОТОК СЕРИАЛА ---
         try
         {
-            if (!_storyService.IsLoaded)
-            {
-                await _storyService.LoadAsync();
-            }
-
             var episode = _storyService.GetCurrentEpisode();
+
             if (episode?.Scenes != null && episode.Scenes.Any())
             {
                 var reactions = new StringBuilder();
+                var newMoods = new Dictionary<string, string>();
+
                 reactions.AppendLine("Тем временем в долине:");
 
+                // =========================================================================
+                // ГЛАВНОЕ ИЗМЕНЕНИЕ: Заменяем "заглушку" на реальную импровизацию.
+                // =========================================================================
                 foreach (var scene in episode.Scenes)
                 {
-                    // Сохраняем все сцены в шёпоты
-                    await _whisperService.AddImprovisationAsync(scene.HeroId, scene.Emotion, scene.Text);
+                    var characterForScene = _characterService.GetCharacterById(scene.HeroId);
+                    if (characterForScene == null) continue;
 
-                    // Формируем текст для отображения
-                    reactions.AppendLine($"— {scene.HeroId}: {scene.Text}");
+                    // Формируем "промпт-режиссера"
+                    var improvPrompt =
+                        $"Ты персонаж по имени {characterForScene.Name}. Характер: {characterForScene.Description}. " +
+                        $"Твоя эмоция сейчас: '{scene.Emotion}'. " +
+                        $"Твоя ключевая мысль для этой сцены: '{scene.Text}'. " +
+                        $"ЗАДАЧА: Не повторяй эту мысль дословно. Сымпровизируй на ее основе короткую, загадочную реплику в своем стиле.";
+
+                    // Вызываем новый метод для импровизации
+                    var improvisedText = await _predictionService.GetImprovisedLineAsync(improvPrompt) ?? scene.Text;
+
+                    // Сохраняем и отображаем УНИКАЛЬНЫЙ, сгенерированный текст
+                    await _whisperService.AddImprovisationAsync(scene.HeroId, scene.Emotion, improvisedText.Trim());
+                    reactions.AppendLine($"— {characterForScene.Name}: {improvisedText.Trim()}");
+
+                    newMoods[scene.HeroId] = scene.Emotion;
                 }
+                // =========================================================================
 
                 SceneLabel.Text = reactions.ToString();
-                Console.WriteLine($"[PredictionPage] Added {episode.Scenes.Count} scenes to whispers.");
-
-                // Плавно показываем блок со сценами
                 await SceneFrame.FadeTo(1, 600, Easing.CubicIn);
 
-                // Переходим к следующему эпизоду только если этот был успешно обработан
-                _storyService.GetNextEpisode();
+                await _storyService.AdvanceToNextEpisodeAsync();
+                await _gameStateService.UpdateAndSaveStateAsync(state =>
+                {
+                    foreach (var mood in newMoods) state.CharacterMoods[mood.Key] = mood.Value;
+                });
+
+                UpdateDebugInfo();
             }
             else
             {
@@ -126,15 +156,20 @@ public partial class PredictionPage : ContentPage
         }
         catch (Exception ex)
         {
-            // ВАЖНО: Ошибка здесь больше не ломает основную функцию предсказания!
             Console.WriteLine($"[PredictionPage] ERROR during scene processing: {ex.Message}");
             SceneLabel.Text = "Эхо долины затихло из-за ошибки...";
             await SceneFrame.FadeTo(1, 600, Easing.CubicIn);
         }
         finally
         {
-            // Возвращаем кнопку в рабочее состояние в любом случае
+            await Task.Delay(700);
             PredictButton.IsEnabled = true;
         }
+    }
+
+    private void ShowError(string title, string message)
+    {
+        CharacterLabel.Text = title;
+        CharacterDescription.Text = message;
     }
 }

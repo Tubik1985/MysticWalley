@@ -80,6 +80,45 @@
                            HorizontalTextAlignment="Center"
                            LineBreakMode="WordWrap" />
                 </Frame>
+
+                <!-- ==================================================================== -->
+                <!-- ЧТО ИЗМЕНИЛОСЬ: Я добавил этот блок кода.                       -->
+                <!-- ==================================================================== -->
+                <Frame BorderColor="DarkRed"
+                       BackgroundColor="#330000"
+                       Padding="10"
+                       Margin="0,20,0,0"
+                       HorizontalOptions="Center"
+                       WidthRequest="290">
+                    <VerticalStackLayout>
+                        <Label Text="--- DEBUG INFO ---"
+                               TextColor="Red"
+                               FontAttributes="Bold"
+                               HorizontalTextAlignment="Center" />
+
+                        <!-- 
+                            ЭТОТ LABEL ТЕПЕРЬ СУЩЕСТВУЕТ. 
+                            Атрибут x:Name="DebugEpisodeLabel" создает в C#-коде
+                            переменную с таким же именем, к которой можно обращаться.
+                        -->
+                        <Label x:Name="DebugEpisodeLabel"
+                               TextColor="OrangeRed"
+                               FontSize="12"
+                               HorizontalTextAlignment="Center"
+                               Text="Текущий эпизод: (ожидание)" />
+
+                        <!-- 
+                            ЭТОТ LABEL ТОЖЕ СУЩЕСТВУЕТ.
+                            x:Name="DebugMoodsLabel" - аналогично.
+                        -->
+                        <Label x:Name="DebugMoodsLabel"
+                               TextColor="OrangeRed"
+                               FontSize="12"
+                               HorizontalTextAlignment="Center"
+                               Text="Настроения: (ожидание)" />
+                    </VerticalStackLayout>
+                </Frame>
+
             </VerticalStackLayout>
         </ScrollView>
     </Grid>
